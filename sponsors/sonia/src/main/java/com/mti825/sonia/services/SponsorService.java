@@ -40,14 +40,29 @@ public class SponsorService {
             .toList();
     }
 
-    public SponsorResponse getSponsorByName(String name) {
-        Sponsor sponsor = sponsorRepository.findByName(name)
-            .orElseThrow(() -> new RuntimeException("Sponsor not found with name: " + name));
-        
-        return new SponsorResponse(
-            sponsor.getId(),
-            sponsor.getName(),
-            sponsor.getDescription()
-        );
+    public SponsorResponse getSponsorById(Long id) {
+        return sponsorRepository.findById(id)
+            .map(sponsor -> new SponsorResponse(
+                sponsor.getId(),
+                sponsor.getName(),
+                sponsor.getDescription()
+            ))
+            .orElseThrow(() -> new IllegalArgumentException("Sponsor not found with id: " + id));
+    }
+
+    public List<SponsorResponse> getSponsorByNameContainingString(String partialName) {
+        return sponsorRepository.findByNameContainingIgnoreCase(partialName).stream()
+            .map(sponsor -> new SponsorResponse(
+                sponsor.getId(),
+                sponsor.getName(),
+                sponsor.getDescription()
+            )).toList();
+    }
+
+    public void deleteSponsorById(Long id) {
+        if (!sponsorRepository.existsById(id)) {
+            throw new IllegalArgumentException("Sponsor not found with id: " + id);
+        }
+        sponsorRepository.deleteById(id);
     }
 }

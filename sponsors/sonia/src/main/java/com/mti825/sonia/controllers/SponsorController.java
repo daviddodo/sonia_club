@@ -13,7 +13,11 @@ import com.mti825.sonia.dto.SponsorDto;
 import com.mti825.sonia.dto.SponsorResponse;
 import com.mti825.sonia.services.SponsorService;
 
+import jakarta.validation.Valid;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -24,19 +28,30 @@ public class SponsorController {
     @Autowired
     private SponsorService sponsorService;
 
-    @PostMapping("create")
+    @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public SponsorResponse createSponsor(@RequestBody SponsorDto sponsorDto) {
+    public SponsorResponse createSponsor(@RequestBody @Valid SponsorDto sponsorDto) {
         return sponsorService.createSponsor(sponsorDto);
     }
     
-    @GetMapping("getAll")
+    @GetMapping()
     public List<SponsorResponse> getAllSponsors() {
         return sponsorService.getAllSponsors();
     }
 
-    @GetMapping("getByName")
-    public SponsorResponse getSponsorById(@RequestParam String name) {
-        return sponsorService.getSponsorByName(name);
+    @GetMapping("search")
+    public List<SponsorResponse> getSponsorByPartialName(@RequestParam String name) {
+        return sponsorService.getSponsorByNameContainingString(name);
+    }
+
+    @GetMapping(value="/{id}")
+    public SponsorResponse getSponsorById(@PathVariable Long id) {
+        return sponsorService.getSponsorById(id);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteSponsor(@PathVariable Long id) {
+        sponsorService.deleteSponsorById(id);
     }
 }
