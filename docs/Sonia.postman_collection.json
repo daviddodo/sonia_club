@@ -1,0 +1,127 @@
+{
+	"info": {
+		"_postman_id": "0b5ef0f2-9dfe-4fc7-990e-dc847a69b941",
+		"name": "Sonia",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28288976"
+	},
+	"item": [
+		{
+			"name": "sponsors",
+			"item": [
+				{
+					"name": "create sponsor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"{{$randomCompanyName}}\",\r\n    \"description\": \"{{$randomLoremSentence}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/sponsors",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sponsors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all sponsors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/sponsors",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sponsors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get sponsor by name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/sponsors/search?name=-",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sponsors",
+								"search"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "-"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get sponsor by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/sponsors/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sponsors",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "delete sponsor by id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"{{$randomCompanyName}}\",\r\n    \"description\": \"{{$randomLoremSentence}}\"\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/sponsors/3",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"sponsors",
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
