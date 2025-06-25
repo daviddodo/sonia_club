@@ -39,6 +39,11 @@ public class ContactController {
         return contactService.getAllContacts();
     }
 
+    @GetMapping(value="/{id}")
+    public ContactResponse getContactById(@PathVariable Long id) {
+        return contactService.getContactById(id);
+    }
+
     @GetMapping("/search")
     public List<ContactResponse> getContactByPartialName(@RequestParam String name) {
         return contactService.getContactsByPartialName(name);

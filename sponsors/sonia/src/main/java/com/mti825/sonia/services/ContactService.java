@@ -58,6 +58,19 @@ public class ContactService {
             .toList();
     }
 
+    public ContactResponse getContactById(Long id) {
+        return contactRepository.findById(id)
+            .map(contact -> new ContactResponse(
+                contact.getId(),
+                contact.getFname(),
+                contact.getLname(),
+                contact.getRole(),
+                contact.getEmail(),
+                contact.getPhone(),
+                contact.getSponsor().getId()))
+            .orElseThrow(() -> new IllegalArgumentException("Contact not found with id: " + id));
+    }
+
     public List<ContactResponse> getContactsBySponsorId(Long sponsorId) {
         return contactRepository.findBySponsorId(sponsorId)
             .stream()
