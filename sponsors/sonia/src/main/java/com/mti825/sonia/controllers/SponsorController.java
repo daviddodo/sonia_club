@@ -33,33 +33,67 @@ public class SponsorController {
     @Autowired
     private ContactService contactService;
 
+    /**
+     * Creates a new sponsor.
+     *
+     * @param sponsorDto the data transfer object containing sponsor details
+     * @return the created sponsor response
+     */
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
     public SponsorResponse createSponsor(@RequestBody @Valid SponsorDto sponsorDto) {
         return sponsorService.createSponsor(sponsorDto);
     }
     
+    /**
+     * Retrieves all sponsors.
+     *
+     * This method returns a list of all sponsors in the system.
+     * It is useful for displaying all sponsors on a page or in a list.
+     * @return a list of SponsorResponse objects representing all sponsors
+     */
     @GetMapping()
     public List<SponsorResponse> getAllSponsors() {
         return sponsorService.getAllSponsors();
     }
 
+    /**     * Retrieves sponsors by a partial name match.
+     *
+     * @param name the partial name to search for
+     * @return a list of SponsorResponse objects matching the partial name
+     */
     @GetMapping("/search")
     public List<SponsorResponse> getSponsorByPartialName(@RequestParam String name) {
         return sponsorService.getSponsorByNameContainingString(name);
     }
 
+    /**     * Retrieves a sponsor by its ID.
+     *
+     * @param id the ID of the sponsor to retrieve
+     * @return the sponsor response
+     * @throws IllegalArgumentException if no sponsor is found with the given ID
+     */
     @GetMapping(value="/{id}")
     public SponsorResponse getSponsorById(@PathVariable Long id) {
         return sponsorService.getSponsorById(id);
     }
 
+    /**     * Deletes a sponsor by its ID.
+     *
+     * @param id the ID of the sponsor to delete
+     * @throws IllegalArgumentException if no sponsor is found with the given ID
+     */
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteSponsor(@PathVariable Long id) {
         sponsorService.deleteSponsorById(id);
     }
 
+    /**     * Retrieves contacts associated with a sponsor by its ID.
+     *
+     * @param id the ID of the sponsor
+     * @return a list of ContactResponse objects associated with the sponsor
+     */
     @GetMapping("/{id}/contacts")
     public List<ContactResponse> getContactsBySponsorId(@PathVariable Long id) {
         return contactService.getContactsBySponsorId(id);
