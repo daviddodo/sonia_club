@@ -28,27 +28,54 @@ public class ContactController {
     @Autowired
     private ContactService contactService;
 
+    /**     * Creates a new contact.
+     *
+     * @param contactDto the data transfer object containing contact details
+     * @return the created contact response
+     */
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ContactResponse createContact(@RequestBody @Valid ContactDto contactDto) {
         return contactService.createContact(contactDto);
     }
     
+    /**     * Retrieves all contacts.
+     *
+     * This method returns a list of all contacts in the system.
+     * It is useful for displaying all contacts on a page or in a list.
+     * @return a list of ContactResponse objects representing all contacts
+     */
     @GetMapping
     public List<ContactResponse> getAllContacts() {
         return contactService.getAllContacts();
     }
 
+    /**     * Retrieves a contact by its ID.
+     *
+     * @param id the ID of the contact to retrieve
+     * @return the contact response
+     * @throws IllegalArgumentException if no contact is found with the given ID
+     */
     @GetMapping(value="/{id}")
     public ContactResponse getContactById(@PathVariable Long id) {
         return contactService.getContactById(id);
     }
 
+    /**     * Retrieves contacts by a partial name match.
+     *
+     * @param name the partial name to search for
+     * @return a list of contact responses matching the partial name
+     */
     @GetMapping("/search")
     public List<ContactResponse> getContactByPartialName(@RequestParam String name) {
         return contactService.getContactsByPartialName(name);
     }
     
+    /**     * Deletes a contact by its ID.
+     *
+     * @param id the ID of the contact to delete
+     * @throws IllegalArgumentException if no contact is found with the given ID
+     */
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteContact(@PathVariable Long id) {

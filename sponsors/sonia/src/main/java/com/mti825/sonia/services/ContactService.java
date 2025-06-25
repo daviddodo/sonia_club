@@ -20,6 +20,11 @@ public class ContactService {
     @Autowired
     private SponsorRepository sponsorRepository;
 
+    /**     * Creates a new contact.
+     *
+     * @param contactDto the data transfer object containing contact details
+     * @return the created contact response
+     */
     public ContactResponse createContact(ContactDto contactDto) {
         Sponsor sponsor = sponsorRepository.findById(contactDto.getSponsorId())
             .orElseThrow(() -> new IllegalArgumentException("Sponsor not found"));
@@ -44,6 +49,12 @@ public class ContactService {
         );
     }
 
+    /**     * Retrieves all contacts.
+     *
+     * This method returns a list of all contacts in the system.
+     * It is useful for displaying all contacts on a page or in a list.
+     * @return a list of ContactResponse objects representing all contacts
+     */
     public List<ContactResponse> getAllContacts() {
         return contactRepository.findAll()
             .stream()
@@ -58,6 +69,12 @@ public class ContactService {
             .toList();
     }
 
+    /**     * Retrieves a contact by its ID.
+     *
+     * @param id the ID of the contact to retrieve
+     * @return the contact response
+     * @throws IllegalArgumentException if no contact is found with the given ID
+     */
     public ContactResponse getContactById(Long id) {
         return contactRepository.findById(id)
             .map(contact -> new ContactResponse(
@@ -71,6 +88,11 @@ public class ContactService {
             .orElseThrow(() -> new IllegalArgumentException("Contact not found with id: " + id));
     }
 
+    /**     * Retrieves contacts associated with a sponsor by its ID.
+     *
+     * @param sponsorId the ID of the sponsor
+     * @return a list of ContactResponse objects associated with the sponsor
+     */
     public List<ContactResponse> getContactsBySponsorId(Long sponsorId) {
         return contactRepository.findBySponsorId(sponsorId)
             .stream()
@@ -85,6 +107,11 @@ public class ContactService {
             .toList();
     }
 
+    /**     * Retrieves contacts by a partial name match.
+     *
+     * @param name the partial name to search for
+     * @return a list of contact responses matching the partial name
+     */
     public List<ContactResponse> getContactsByPartialName(String name) {
         return contactRepository.findByFnameContainingIgnoreCaseOrLnameContainingIgnoreCase(name, name)
             .stream()
@@ -99,6 +126,11 @@ public class ContactService {
             .toList();
     }
 
+    /**     * Deletes a contact by its ID.
+     *
+     * This method will throw an IllegalArgumentException if no contact is found with the given ID.
+     * @param id the ID of the contact to delete
+     */
     public void deleteContactById(Long id) {
         if (!contactRepository.existsById(id)) {
             throw new IllegalArgumentException("Contact not found with id: " + id);
