@@ -14,6 +14,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RestController
 @RequestMapping("/contribution-types")
 public class ContributionTypeController {
+    /**     * Retrieves all contribution types.
+     *
+     * This method returns a list of all contribution types in the system.
+     * It is useful for displaying all contribution types in a dropdown.
+     * @return a list of ContributionType objects representing all contribution types
+     */
     @GetMapping
     public List<Map<String, String>> getAll() {
         return Arrays.stream(ContributionType.values())
