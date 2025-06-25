@@ -12,7 +12,9 @@ import com.mti825.sonia.services.ContributionTypeService;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequestMapping("/contribution-types")
@@ -39,5 +41,15 @@ public class ContributionTypeController {
     @GetMapping()
     public List<ContributionTypeResponse> getAllContributionTypes() {
         return contributionTypeService.getAllContributionTypes();
+    }
+
+    /**     * Deletes a contribution type by its ID.
+     *
+     * @param id the ID of the contribution type to delete
+     * @throws IllegalArgumentException if no contribution is found with the given ID
+     */
+    @DeleteMapping("/{id}")
+    public void deleteContact(@PathVariable Long id) {
+        contributionTypeService.deleteContributionTypeById(id);
     }
 }

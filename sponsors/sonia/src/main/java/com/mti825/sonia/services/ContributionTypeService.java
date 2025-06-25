@@ -43,6 +43,18 @@ public class ContributionTypeService {
         return mapToResponseList(contributionTypes);
     }
 
+    /**     * Deletes a contribution type by its ID.
+     *
+     * This method will throw an IllegalArgumentException if no contribution type is found with the given ID.
+     * @param id the ID of the contribution type to delete
+     */
+    public void deleteContributionTypeById(Long id) {
+        if (!contributionTypeRepository.existsById(id)) {
+            throw new IllegalArgumentException("Contribution type not found with id: " + id);
+        }
+        contributionTypeRepository.deleteById(id);
+    }
+
     /**     * Maps a ContributionType entity to a ContributionResponse DTO.
      *
      * @param contributionTypes the ContributionType entity to map
