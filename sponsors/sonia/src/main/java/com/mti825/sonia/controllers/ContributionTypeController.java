@@ -20,8 +20,7 @@ public class ContributionTypeController {
     @Autowired
     private ContributionTypeService contributionTypeService;
 
-    /**
-     * Creates a new contribution type.
+    /**     * Creates a new contribution type.
      *
      * @param contributionTypeDto the data transfer object containing contribution type details
      * @return the created contribution type response
@@ -31,9 +30,14 @@ public class ContributionTypeController {
         return contributionTypeService.createContributionType(contributionTypeDto);
     }
     
+    /**     * Retrieves all contribution types.
+     *
+     * This method returns a list of all contribution types in the system.
+     * It is useful for displaying all contribution types in a list.
+     * @return a list of ContributionTypeResponse objects representing all contribution types
+     */
     @GetMapping()
     public List<ContributionTypeResponse> getAllContributionTypes() {
         return contributionTypeService.getAllContributionTypes();
     }
-    
 }
