@@ -81,7 +81,7 @@ public class ContactService {
     /**     * Retrieves contacts by a partial name match.
      *
      * @param name the partial name to search for
-     * @return a list of contact responses matching the partial name
+     * @return a list of ContactResponse objects matching the partial name
      */
     public List<ContactResponse> getContactsByPartialName(String name) {
         List<Contact> contacts = contactRepository.findByFnameContainingIgnoreCaseOrLnameContainingIgnoreCase(name, name);

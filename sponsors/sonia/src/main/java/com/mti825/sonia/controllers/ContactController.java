@@ -31,7 +31,7 @@ public class ContactController {
     /**     * Creates a new contact.
      *
      * @param contactDto the data transfer object containing contact details
-     * @return the created contact response
+     * @return the created ContactResponse
      */
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -64,7 +64,7 @@ public class ContactController {
     /**     * Retrieves contacts by a partial name match.
      *
      * @param name the partial name to search for
-     * @return a list of contact responses matching the partial name
+     * @return a list of ContactResponse objects matching the partial name
      */
     @GetMapping("/search")
     public List<ContactResponse> getContactByPartialName(@RequestParam String name) {

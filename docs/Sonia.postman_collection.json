@@ -249,7 +249,17 @@
 					"name": "get all club departments",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/club-departments",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"club-departments"
+							]
+						}
 					},
 					"response": []
 				},

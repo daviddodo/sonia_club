@@ -38,7 +38,6 @@ public class SponsorService {
      * This method returns a list of all sponsors in the system.
      * It is useful for displaying all sponsors on a page or in a list.
      * @return a list of SponsorResponse objects representing all sponsors
-     * @throws IllegalArgumentException if no sponsors are found
      */
     public List<SponsorResponse> getAllSponsors() {
         List<Sponsor> sponsors = sponsorRepository.findAll();
