@@ -37,9 +37,9 @@ public class ContactService {
             contactDto.getPhone(),
             sponsor);
 
-        Contact savedContact = contactRepository.save(contact);
+        contact = contactRepository.save(contact);
 
-        return mapToResponse(savedContact);
+        return mapToResponse(contact);
     }
 
     /**     * Retrieves all contacts.

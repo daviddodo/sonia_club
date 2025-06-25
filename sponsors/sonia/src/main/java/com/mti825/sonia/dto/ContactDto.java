@@ -11,25 +11,25 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ContactDto {
-    @NotBlank
-    @Size(max = 50)
+    @NotBlank(message = "First name cannot be blank")
+    @Size(max = 50, message = "First name cannot exceed 50 characters")
     private String fname;
 
-    @NotBlank
-    @Size(max = 50)
+    @NotBlank(message = "Last name cannot be blank")
+    @Size(max = 50, message = "Last name cannot exceed 50 characters")
     private String lname;
 
-    @NotBlank
-    @Size(max = 50)
+    @NotBlank(message = "Role cannot be blank")
+    @Size(max = 50, message = "Role cannot exceed 50 characters")
     private String role;
 
-    @NotBlank
-    @Size(max = 100)
+    @NotBlank(message = "Email cannot be blank")
+    @Size(max = 100, message = "Email cannot exceed 100 characters")
     private String email;
 
-    @NotBlank
+    @NotBlank(message = "Phone cannot be blank")
     private String phone;
 
-    @NotNull
+    @NotNull(message = "Sponsor ID cannot be null")
     private Long sponsorId;
 }
