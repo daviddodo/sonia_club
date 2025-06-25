@@ -74,7 +74,7 @@ public class ProjectController {
      * @param id the ID of the project to delete
      * @throws IllegalArgumentException if no project is found with the given ID
      */
-    @DeleteMapping("/{id}")
+    @DeleteMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteProjectById(@PathVariable Long id) {
         projectService.deleteProjectById(id);

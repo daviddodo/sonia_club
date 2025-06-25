@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.mti825.sonia.models.ClubRep;
 import com.mti825.sonia.models.Contact;
 
-public interface ClumbRepRepository extends JpaRepository<ClubRep, Long> {
+public interface ClubRepRepository extends JpaRepository<ClubRep, Long> {
     List<Contact> findByFnameContainingIgnoreCaseOrLnameContainingIgnoreCase(String fname, String lname);
 }

@@ -80,7 +80,7 @@ public class SponsorController {
      * @param id the ID of the sponsor to delete
      * @throws IllegalArgumentException if no sponsor is found with the given ID
      */
-    @DeleteMapping("/{id}")
+    @DeleteMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteSponsorById(@PathVariable Long id) {
         sponsorService.deleteSponsorById(id);
@@ -91,7 +91,7 @@ public class SponsorController {
      * @param id the ID of the sponsor
      * @return a list of ContactResponse objects associated with the sponsor
      */
-    @GetMapping("/{id}/contacts")
+    @GetMapping(value = "/{id}/contacts")
     public List<ContactResponse> getContactsBySponsorId(@PathVariable Long id) {
         return contactService.getContactsBySponsorId(id);
     }

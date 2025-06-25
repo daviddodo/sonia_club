@@ -76,7 +76,7 @@ public class ContactController {
      * @param id the ID of the contact to delete
      * @throws IllegalArgumentException if no contact is found with the given ID
      */
-    @DeleteMapping("/{id}")
+    @DeleteMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteContactById(@PathVariable Long id) {
         contactService.deleteContactById(id);
