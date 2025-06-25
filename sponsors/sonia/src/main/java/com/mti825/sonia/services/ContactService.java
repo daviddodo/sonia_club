@@ -38,15 +38,8 @@ public class ContactService {
             sponsor);
 
         Contact savedContact = contactRepository.save(contact);
-        return new ContactResponse(
-            savedContact.getId(),
-            savedContact.getFname(),
-            savedContact.getLname(),
-            savedContact.getRole(),
-            savedContact.getEmail(),
-            savedContact.getPhone(),
-            savedContact.getSponsor().getId()
-        );
+
+        return mapToResponse(savedContact);
     }
 
     /**     * Retrieves all contacts.
@@ -56,17 +49,9 @@ public class ContactService {
      * @return a list of ContactResponse objects representing all contacts
      */
     public List<ContactResponse> getAllContacts() {
-        return contactRepository.findAll()
-            .stream()
-            .map(contact -> new ContactResponse(
-                contact.getId(),
-                contact.getFname(),
-                contact.getLname(),
-                contact.getRole(),
-                contact.getEmail(),
-                contact.getPhone(),
-                contact.getSponsor().getId()))
-            .toList();
+        List<Contact> contacts = contactRepository.findAll();
+
+        return mapToResponseList(contacts);
     }
 
     /**     * Retrieves a contact by its ID.
@@ -76,16 +61,10 @@ public class ContactService {
      * @throws IllegalArgumentException if no contact is found with the given ID
      */
     public ContactResponse getContactById(Long id) {
-        return contactRepository.findById(id)
-            .map(contact -> new ContactResponse(
-                contact.getId(),
-                contact.getFname(),
-                contact.getLname(),
-                contact.getRole(),
-                contact.getEmail(),
-                contact.getPhone(),
-                contact.getSponsor().getId()))
+        Contact contact = contactRepository.findById(id)
             .orElseThrow(() -> new IllegalArgumentException("Contact not found with id: " + id));
+
+        return mapToResponse(contact);
     }
 
     /**     * Retrieves contacts associated with a sponsor by its ID.
@@ -94,17 +73,9 @@ public class ContactService {
      * @return a list of ContactResponse objects associated with the sponsor
      */
     public List<ContactResponse> getContactsBySponsorId(Long sponsorId) {
-        return contactRepository.findBySponsorId(sponsorId)
-            .stream()
-            .map(contact -> new ContactResponse(
-                contact.getId(),
-                contact.getFname(),
-                contact.getLname(),
-                contact.getRole(),
-                contact.getEmail(),
-                contact.getPhone(),
-                contact.getSponsor().getId()))
-            .toList();
+        List<Contact> contacts = contactRepository.findBySponsorId(sponsorId);
+
+        return mapToResponseList(contacts);
     }
 
     /**     * Retrieves contacts by a partial name match.
@@ -113,17 +84,9 @@ public class ContactService {
      * @return a list of contact responses matching the partial name
      */
     public List<ContactResponse> getContactsByPartialName(String name) {
-        return contactRepository.findByFnameContainingIgnoreCaseOrLnameContainingIgnoreCase(name, name)
-            .stream()
-            .map(contact -> new ContactResponse(
-                contact.getId(),
-                contact.getFname(),
-                contact.getLname(),
-                contact.getRole(),
-                contact.getEmail(),
-                contact.getPhone(),
-                contact.getSponsor().getId()))
-            .toList();
+        List<Contact> contacts = contactRepository.findByFnameContainingIgnoreCaseOrLnameContainingIgnoreCase(name, name);
+
+        return mapToResponseList(contacts);
     }
 
     /**     * Deletes a contact by its ID.
@@ -136,5 +99,33 @@ public class ContactService {
             throw new IllegalArgumentException("Contact not found with id: " + id);
         }
         contactRepository.deleteById(id);
+    }
+
+    /**     * Maps a Contact entity to a ContactResponse DTO.
+     *
+     * @param contact the Contact entity to map
+     * @return the ContactResponse DTO
+     */
+    private ContactResponse mapToResponse(Contact contact) {
+        return new ContactResponse(
+            contact.getId(),
+            contact.getFname(),
+            contact.getLname(),
+            contact.getRole(),
+            contact.getEmail(),
+            contact.getPhone(),
+            contact.getSponsor().getId()
+        );
+    }
+
+    /**     * Maps a list of Contact entities to a list of ContactResponse DTOs.
+     *
+     * @param contacts the list of Contact entities to map
+     * @return a list of ContactResponse DTOs
+     */
+    private List<ContactResponse> mapToResponseList(List<Contact> contacts) {
+        return contacts.stream()
+            .map(this::mapToResponse)
+            .toList();
     }
 }
