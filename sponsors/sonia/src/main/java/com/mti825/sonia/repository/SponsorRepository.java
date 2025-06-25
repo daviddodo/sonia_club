@@ -8,6 +8,5 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface SponsorRepository extends JpaRepository<Sponsor, Long> {
-    Optional<Sponsor> findByName(String name);
     List<Sponsor> findByNameContainingIgnoreCase(String name);
 }
