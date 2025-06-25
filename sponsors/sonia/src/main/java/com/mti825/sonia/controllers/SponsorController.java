@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-
 @RestController
 @RequestMapping("/sponsors")
 public class SponsorController {
@@ -33,8 +32,7 @@ public class SponsorController {
     @Autowired
     private ContactService contactService;
 
-    /**
-     * Creates a new sponsor.
+    /**     Creates a new sponsor.
      *
      * @param sponsorDto the data transfer object containing sponsor details
      * @return the created sponsor response
@@ -45,8 +43,7 @@ public class SponsorController {
         return sponsorService.createSponsor(sponsorDto);
     }
     
-    /**
-     * Retrieves all sponsors.
+    /**     * Retrieves all sponsors.
      *
      * This method returns a list of all sponsors in the system.
      * It is useful for displaying all sponsors on a page or in a list.
