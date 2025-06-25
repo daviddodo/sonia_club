@@ -243,57 +243,13 @@
 			]
 		},
 		{
-			"name": "3. sponsors pt2",
+			"name": "3. enumerations",
 			"item": [
 				{
-					"name": "get contacts by sponsor id",
+					"name": "get all club departments",
 					"request": {
 						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:8080/sponsors/1/contacts",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"sponsors",
-								"1",
-								"contacts"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "3. contribution types",
-			"item": [
-				{
-					"name": "create contribution type",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"{{$randomLoremWords}}\",\r\n    \"description\": \"{{$randomLoremSentence}}\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:8080/contribution-types",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"contribution-types"
-							]
-						}
+						"header": []
 					},
 					"response": []
 				},
@@ -314,21 +270,27 @@
 						}
 					},
 					"response": []
-				},
+				}
+			]
+		},
+		{
+			"name": "sponsors pt2",
+			"item": [
 				{
-					"name": "delete contribution type",
+					"name": "get contacts by sponsor id",
 					"request": {
-						"method": "DELETE",
+						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/contribution-types/1",
+							"raw": "localhost:8080/sponsors/1/contacts",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"contribution-types",
-								"1"
+								"sponsors",
+								"1",
+								"contacts"
 							]
 						}
 					},
