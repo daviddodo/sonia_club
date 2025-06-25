@@ -1,6 +1,7 @@
 package com.mti825.sonia.controllers;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,6 +37,11 @@ public class ContactController {
     @GetMapping
     public List<ContactResponse> getAllContacts() {
         return contactService.getAllContacts();
+    }
+
+    @GetMapping("/search")
+    public List<ContactResponse> getContactByPartialName(@RequestParam String name) {
+        return contactService.getContactsByPartialName(name);
     }
     
     @DeleteMapping("/{id}")

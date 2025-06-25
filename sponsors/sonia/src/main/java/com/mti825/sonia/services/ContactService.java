@@ -72,6 +72,20 @@ public class ContactService {
             .toList();
     }
 
+    public List<ContactResponse> getContactsByPartialName(String name) {
+        return contactRepository.findByFnameContainingIgnoreCaseOrLnameContainingIgnoreCase(name, name)
+            .stream()
+            .map(contact -> new ContactResponse(
+                contact.getId(),
+                contact.getFname(),
+                contact.getLname(),
+                contact.getRole(),
+                contact.getEmail(),
+                contact.getPhone(),
+                contact.getSponsor().getId()))
+            .toList();
+    }
+
     public void deleteContactById(Long id) {
         if (!contactRepository.existsById(id)) {
             throw new IllegalArgumentException("Contact not found with id: " + id);

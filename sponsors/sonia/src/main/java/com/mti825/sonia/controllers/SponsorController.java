@@ -44,7 +44,7 @@ public class SponsorController {
         return sponsorService.getAllSponsors();
     }
 
-    @GetMapping("search")
+    @GetMapping("/search")
     public List<SponsorResponse> getSponsorByPartialName(@RequestParam String name) {
         return sponsorService.getSponsorByNameContainingString(name);
     }

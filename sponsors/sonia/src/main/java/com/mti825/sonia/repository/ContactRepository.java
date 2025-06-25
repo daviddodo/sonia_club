@@ -8,4 +8,5 @@ import com.mti825.sonia.models.Contact;
 
 public interface ContactRepository extends JpaRepository<Contact, Long> {
     List<Contact> findBySponsorId(Long sponsorId);
+    List<Contact> findByFnameContainingIgnoreCaseOrLnameContainingIgnoreCase(String fname, String lname);
 }
