@@ -395,6 +395,91 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "5. club reps",
+			"item": [
+				{
+					"name": "create club rep",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fname\": \"{{$randomFirstName}}\",\r\n    \"lname\": \"{{$randomLastName}}\",\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"phone\": \"{{$randomPhoneNumber}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/club-reps",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"club-reps"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all club reps",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/club-reps",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"club-reps"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get club rep by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/club-reps/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"club-reps",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get club rep by name",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
