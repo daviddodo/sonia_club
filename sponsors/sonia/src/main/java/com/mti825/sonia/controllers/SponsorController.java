@@ -85,7 +85,7 @@ public class SponsorController {
      */
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteSponsor(@PathVariable Long id) {
+    public void deleteSponsorById(@PathVariable Long id) {
         sponsorService.deleteSponsorById(id);
     }
 

@@ -78,7 +78,7 @@ public class ContactController {
      */
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteContact(@PathVariable Long id) {
+    public void deleteContactById(@PathVariable Long id) {
         contactService.deleteContactById(id);
     }
 }

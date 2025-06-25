@@ -49,7 +49,7 @@ public class ContributionTypeController {
      * @throws IllegalArgumentException if no contribution is found with the given ID
      */
     @DeleteMapping("/{id}")
-    public void deleteContact(@PathVariable Long id) {
+    public void deleteContributionTypeById(@PathVariable Long id) {
         contributionTypeService.deleteContributionTypeById(id);
     }
 }
