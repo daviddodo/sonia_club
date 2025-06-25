@@ -65,6 +65,18 @@ public class ProjectService {
 
         return mapToResponse(projects);
     }
+    
+    /**     * Deletes a project by its ID.
+     *
+     * This method will throw an IllegalArgumentException if no contact is found with the given ID.
+     * @param id the ID of the project to delete
+     */
+    public void deleteProjectById(Long id) {
+        if (!projectRepository.existsById(id)) {
+            throw new IllegalArgumentException("Contact not found with id: " + id);
+        }
+        projectRepository.deleteById(id);
+    }
 
     /**     * Maps a Project entity to a ProjectResponse DTO.
      *
