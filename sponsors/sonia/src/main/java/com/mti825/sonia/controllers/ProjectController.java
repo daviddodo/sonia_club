@@ -59,7 +59,7 @@ public class ProjectController {
         return projectService.getProjectById(id);
     }
     
-    /**     * Retrieves porjects by a partial name match.
+    /**     * Retrieves projects by a partial name match.
      *
      * @param name the partial name to search for
      * @return a list of ProjectResponse objects matching the partial name
@@ -74,7 +74,7 @@ public class ProjectController {
      * @param id the ID of the project to delete
      * @throws IllegalArgumentException if no project is found with the given ID
      */
-    @DeleteMapping(value = "/{id}")
+    @DeleteMapping(value="/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteProjectById(@PathVariable Long id) {
         projectService.deleteProjectById(id);

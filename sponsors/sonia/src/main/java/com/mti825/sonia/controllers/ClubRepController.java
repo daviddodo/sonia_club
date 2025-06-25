@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mti825.sonia.dto.ClubRepDto;
 import com.mti825.sonia.dto.ClubRepResponse;
+import com.mti825.sonia.repository.ClubRepRepository;
 import com.mti825.sonia.services.ClubRepService;
 
 import jakarta.validation.Valid;
@@ -15,8 +16,8 @@ import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
-
 
 
 @RestController
@@ -44,6 +45,27 @@ public class ClubRepController {
     @GetMapping
     public List<ClubRepResponse> getAllClubReps() {
         return clubRepService.getAllClubReps();
+    }
+    
+    /**     * Retrieves a ClubRep by its ID.
+     *
+     * @param id the ID of the club rep to retrieve
+     * @return the ClubRepResponse DTO
+     * @throws IllegalArgumentException if no club rep is found with the given ID
+     */
+    @GetMapping(value="{id}")
+    public ClubRepResponse getClubRepById(@PathVariable Long id) {
+        return clubRepService.getClubRepById(id);
+    }
+    
+    /**     * Retrieves club reps by a partial name match.
+     *
+     * @param name the partial name to search for
+     * @return a list of ClubRep objects matching the partial name
+     */
+    @GetMapping("/search")
+    public List<ClubRepResponse> getMethodName(@RequestParam String name) {
+        return clubRepService.getClubRepByPartialName(name);
     }
     
 }

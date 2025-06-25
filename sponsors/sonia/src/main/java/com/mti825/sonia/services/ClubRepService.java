@@ -45,6 +45,25 @@ public class ClubRepService {
         return mapToResponseList(clubReps);
     }
 
+    /**     * Retrieves a club rep by its ID.
+     *
+     * @param id the ID of the club rep to retrieve
+     * @return the ClubRepResponse DTO
+     * @throws IllegalArgumentException if no club rep is found with the given ID
+     */
+    public ClubRepResponse getClubRepById(Long id) {
+        ClubRep clubRep = clubRepRepository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("Club rep not found with id: " + id));
+
+        return mapToResponse(clubRep);
+    }
+
+    public List<ClubRepResponse> getClubRepByPartialName(String name) {
+        List<ClubRep> clubReps = clubRepRepository.findByFnameContainingIgnoreCaseOrLnameContainingIgnoreCase(name, name);
+
+        return mapToResponseList(clubReps);
+    }
+
     /**     * Maps a ClubRep entity to a ClubRepResponse DTO.
      *
      * @param clubRep the ClubRep entity to map

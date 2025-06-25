@@ -57,7 +57,7 @@ public class ContactService {
     /**     * Retrieves a contact by its ID.
      *
      * @param id the ID of the contact to retrieve
-     * @return the contact response
+     * @return the ContactResponse DTO
      * @throws IllegalArgumentException if no contact is found with the given ID
      */
     public ContactResponse getContactById(Long id) {
