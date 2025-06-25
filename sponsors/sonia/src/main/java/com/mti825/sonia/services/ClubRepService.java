@@ -58,10 +58,27 @@ public class ClubRepService {
         return mapToResponse(clubRep);
     }
 
+    /**     * Retrieves club reps by a partial name match.
+     *
+     * @param name the partial name to search for
+     * @return a list of ClubRepResponse objects matching the partial name
+     */
     public List<ClubRepResponse> getClubRepByPartialName(String name) {
         List<ClubRep> clubReps = clubRepRepository.findByFnameContainingIgnoreCaseOrLnameContainingIgnoreCase(name, name);
 
         return mapToResponseList(clubReps);
+    }
+
+    /**     * Deletes a club rep by its ID.
+     *
+     * This method will throw an IllegalArgumentException if no club rep is found with the given ID.
+     * @param id the ID of the club rep to delete
+     */
+    public void deleteClubRepByid(Long id) {
+        if (!clubRepRepository.existsById(id)) {
+            throw new IllegalArgumentException("Club rep not found with id: " + id);
+        }
+        clubRepRepository.deleteById(id);
     }
 
     /**     * Maps a ClubRep entity to a ClubRepResponse DTO.
