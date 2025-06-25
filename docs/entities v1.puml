@@ -1,0 +1,103 @@
+@startuml
+entity sponsors {
+    id: int
+    sponsor_name: string
+    description: string
+}
+
+entity contacts {
+    id: int
+    full_name: string
+    role: string
+    email: string
+    phone: string
+    --
+    sponsor_id: int <<FK>>
+}
+
+entity club_members {
+    id: int
+    full_name: string
+    email: string
+    phone: string
+}
+
+entity contributions {
+    id: int
+    donation: string
+    description: string
+    monetary_value: float
+    temporal_value: string
+    date: date
+    --
+    sponsor_id: int <<FK>>
+    contact_id: int <<FK>>
+    club_member_id: int <<FK>>
+    team_id: int <<FK>>
+    type_id: int <<FK>>
+}
+
+entity contribution_types {
+    id: int
+    name: string
+    description: string
+}
+
+entity follow_ups {
+    id: int
+    date: date
+    description: string
+    status: string
+    --
+    contribution_id: int <<FK>>
+}
+
+entity projects {
+    id: int
+    project_name: string
+    description: string
+    --
+    contribution_id: int <<FK>>
+}
+
+entity club_departments {
+    id: int
+    department_name: string
+}
+
+sponsors ||-r--o{ contacts : "employ"
+contacts }|-d-|| contributions : "coordinated 1 or many \ncontributions"
+sponsors }|-d-|| contributions : "donated 1 or many \ncontributions"
+club_members ||-d-o{ contributions : "obtained 0 or many \ncontributions"
+
+projects ||-r-o{ contributions : "benefited from 0 or many \ncontributions"
+club_departments ||-l-o{ contributions : "0 or many contributions \nhelped a club department"
+
+contributions ||-d-|| contribution_types : "are of type"
+contributions ||-d-o{ follow_ups : "require 0 or many \nfollow up(s)"
+
+note right of club_departments::department_name
+    - general
+    - mechanical
+    - electrical
+    - software
+    - alumni
+end note
+
+note right of follow_ups::status
+    - pending
+    - in progress
+    - completed
+    - cancelled
+    - closed
+end note
+
+note right of contribution_types::name
+    - material
+    - money
+    - equipment
+    - environment
+    - service
+end note
+
+@enduml
