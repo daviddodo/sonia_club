@@ -376,7 +376,7 @@
 					"response": []
 				},
 				{
-					"name": "delete project",
+					"name": "delete project by id",
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -467,15 +467,43 @@
 					"name": "get club rep by name",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/club-reps/search?name=a",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"club-reps",
+								"search"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "a"
+								}
+							]
+						}
 					},
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "delete club rep by id",
 					"request": {
-						"method": "GET",
-						"header": []
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/club-reps/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"club-reps",
+								"1"
+							]
+						}
 					},
 					"response": []
 				}
