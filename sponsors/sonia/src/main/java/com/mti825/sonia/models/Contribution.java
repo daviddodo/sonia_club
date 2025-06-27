@@ -2,17 +2,23 @@ package com.mti825.sonia.models;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.mti825.sonia.dto.ContributionDto;
+import com.mti825.sonia.models.enums.ClubDepartment;
 import com.mti825.sonia.models.enums.ContributionType;
 
+import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -37,6 +43,11 @@ public class Contribution {
     @Column(name = "contributionType", nullable = false)
     private ContributionType contributionType;
 
+    @ElementCollection(targetClass = ClubDepartment.class)
+    @Enumerated(EnumType.STRING)
+    @CollectionTable(name = "contribution_helped_depts", joinColumns = @JoinColumn(name = "contribution_id"))
+    private Set<ClubDepartment> clubDepartments = new HashSet<>();
+
     public Contribution(ContributionDto contributionDto) {
         donation = contributionDto.getDonation();
         description = contributionDto.getDescription();
@@ -44,5 +55,8 @@ public class Contribution {
         temporalValue = contributionDto.getTemporalValue();
         date = contributionDto.getDate();
         contributionType = contributionDto.getContributionType();
+        clubDepartments = contributionDto.getClubDepartments() != null
+                  ? contributionDto.getClubDepartments()
+                  : new HashSet<>();
     }
 }

@@ -2,7 +2,9 @@ package com.mti825.sonia.dto;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Set;
 
+import com.mti825.sonia.models.enums.ClubDepartment;
 import com.mti825.sonia.models.enums.ContributionType;
 
 import jakarta.validation.constraints.NotBlank;
@@ -36,4 +38,6 @@ public class ContributionDto {
 
     @NotNull(message = "Contribution type cannot be null")
     private ContributionType contributionType;
+
+    private Set<ClubDepartment> clubDepartments;
 }

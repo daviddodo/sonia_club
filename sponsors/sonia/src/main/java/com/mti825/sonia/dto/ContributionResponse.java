@@ -2,8 +2,10 @@ package com.mti825.sonia.dto;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 import com.mti825.sonia.models.Contribution;
+import com.mti825.sonia.models.enums.ClubDepartment;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,6 +20,7 @@ public class ContributionResponse {
     private String temporalValue;
     private Date date;
     private String contributionType;
+    private List<String> clubDepartments;
 
     public ContributionResponse(Contribution contribution) {
         id = contribution.getId();
@@ -27,5 +30,15 @@ public class ContributionResponse {
         temporalValue = contribution.getTemporalValue();
         date = contribution.getDate();
         contributionType = contribution.getContributionType().getDisplayName();
+
+        if (contribution.getClubDepartments() != null) {
+            clubDepartments = contribution.getClubDepartments()
+                .stream()
+                .map(ClubDepartment::getDisplayName)
+                .toList();
+        } else {
+            clubDepartments = List.of();
+        }
+        // clubDepartments = contribution.getClubDepartments().stream().map(ClubDepartment::getDisplayName).toList();
     }
 }
