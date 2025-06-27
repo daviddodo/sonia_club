@@ -61,10 +61,14 @@ public class ContactService {
      * @throws IllegalArgumentException if no contact is found with the given ID
      */
     public ContactResponse getContactById(Long id) {
-        Contact contact = contactRepository.findById(id)
-            .orElseThrow(() -> new IllegalArgumentException("Contact not found with id: " + id));
-
+        Contact contact = findEntityById(id);
         return mapToResponse(contact);
+    }
+
+    public Contact findEntityById(Long id) {
+        // todo check if this works
+        return contactRepository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("Contact not found with id: " + id));
     }
 
     /**     * Retrieves contacts associated with a sponsor by its ID.

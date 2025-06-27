@@ -40,4 +40,7 @@ public class ContributionDto {
     private ContributionType contributionType;
 
     private Set<ClubDepartment> clubDepartments;
+
+    @NotNull(message = "Contribution's contact cannot be null")
+    private Long contactId;
 }

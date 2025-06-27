@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.mti825.sonia.dto.ContributionDto;
 import com.mti825.sonia.dto.ContributionResponse;
+import com.mti825.sonia.models.Contact;
 import com.mti825.sonia.models.Contribution;
 import com.mti825.sonia.repository.ContributionRepository;
 
@@ -14,6 +15,9 @@ import com.mti825.sonia.repository.ContributionRepository;
 public class ContributionService {
     @Autowired
     private ContributionRepository contributionRepository;
+
+    @Autowired
+    private ContactService contactService;
 
     /**     * Creates a new contribution.
      *
@@ -74,6 +78,9 @@ public class ContributionService {
      */
     private Contribution createFromDto(ContributionDto contributionDto) {
         Contribution contribution = new Contribution(contributionDto);
+
+        Contact contact = contactService.findEntityById(contributionDto.getContactId());
+        contribution.setContact(contact);
 
         return contribution;
     }

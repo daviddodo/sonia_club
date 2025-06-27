@@ -269,13 +269,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/contribution-types",
+							"raw": "localhost:8080/contributions/types",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"contribution-types"
+								"contributions",
+								"types"
 							]
 						}
 					},
@@ -501,6 +502,141 @@
 							"port": "8080",
 							"path": [
 								"club-reps",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "6. contributions",
+			"item": [
+				{
+					"name": "create contribution",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const days = _.random(0, 6);\r",
+									"const hours = _.random(0, 25);\r",
+									"const minutes = _.random(0, 60);\r",
+									"\r",
+									"const temporalValue = `${days}d ${hours}h ${minutes}min`;\r",
+									"\r",
+									"// Set it as a dynamic variable\r",
+									"pm.environment.set(\"temporalValue\", temporalValue);\r",
+									"\r",
+									"const types = ['ENVIRONMENT', 'EQUIPMENT', 'MATERIAL', 'MONEY', 'SERVICE'];\r",
+									"const randomType = types[Math.floor(Math.random() * types.length)];\r",
+									"\r",
+									"pm.environment.set(\"contributionType\", randomType);\r",
+									"\r",
+									"const departments = [\"ALUMNI\", \"ELECTRICAL\", \"GENERAL\", \"MECHANICAL\", \"SOFTWARE\"];\r",
+									"const count = _.random(1, 5);\r",
+									"\r",
+									"let selected = [];\r",
+									"while (selected.length < count) {\r",
+									"    const dept = _.sample(departments);\r",
+									"    if (!selected.includes(dept)) selected.push(dept);\r",
+									"}\r",
+									"\r",
+									"// Set as stringified JSON array\r",
+									"pm.environment.set(\"clubDepartments\", JSON.stringify(selected));\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"donation\": \"{{$randomBsAdjective}} {{$randomProduct}} {{$randomAlphaNumeric}}\",\r\n    \"description\": \"{{$randomLoremSentence}}\",\r\n    \"monetaryValue\": {{$randomPrice}},\r\n    \"temporalValue\": \"{{temporalValue}}\",\r\n    \"date\": {{$timestamp}},\r\n    \"contributionType\": \"{{contributionType}}\",\r\n    \"clubDepartments\": {{clubDepartments}},\r\n    \"contactId\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/contributions",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contributions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all contributions",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/contributions",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contributions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get contribution by id",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/contributions/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contributions",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete contribution by id",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/contributions/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contributions",
 								"1"
 							]
 						}

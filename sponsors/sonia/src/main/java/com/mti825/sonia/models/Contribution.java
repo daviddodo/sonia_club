@@ -19,6 +19,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -47,6 +48,10 @@ public class Contribution {
     @Enumerated(EnumType.STRING)
     @CollectionTable(name = "contribution_helped_depts", joinColumns = @JoinColumn(name = "contribution_id"))
     private Set<ClubDepartment> clubDepartments = new HashSet<>();
+
+    @ManyToOne
+    @JoinColumn(name = "contact_id", nullable = false)
+    private Contact contact;
 
     public Contribution(ContributionDto contributionDto) {
         donation = contributionDto.getDonation();

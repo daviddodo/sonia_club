@@ -21,6 +21,7 @@ public class ContributionResponse {
     private Date date;
     private String contributionType;
     private List<String> clubDepartments;
+    private String contactName;
 
     public ContributionResponse(Contribution contribution) {
         id = contribution.getId();
@@ -39,6 +40,7 @@ public class ContributionResponse {
         } else {
             clubDepartments = List.of();
         }
-        // clubDepartments = contribution.getClubDepartments().stream().map(ClubDepartment::getDisplayName).toList();
+
+        contactName = contribution.getContact().getFullName();
     }
 }
