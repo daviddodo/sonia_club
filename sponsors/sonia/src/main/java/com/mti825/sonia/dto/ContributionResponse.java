@@ -17,6 +17,7 @@ public class ContributionResponse {
     private BigDecimal monetaryValue;
     private String temporalValue;
     private Date date;
+    private String contributionType;
 
     public ContributionResponse(Contribution contribution) {
         id = contribution.getId();
@@ -25,5 +26,6 @@ public class ContributionResponse {
         monetaryValue = contribution.getMonetaryValue();
         temporalValue = contribution.getTemporalValue();
         date = contribution.getDate();
+        contributionType = contribution.getContributionType().getDisplayName();
     }
 }

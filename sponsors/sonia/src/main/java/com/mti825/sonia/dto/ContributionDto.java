@@ -3,6 +3,8 @@ package com.mti825.sonia.dto;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import com.mti825.sonia.models.enums.ContributionType;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -31,4 +33,7 @@ public class ContributionDto {
 
     @NotNull(message = "Date cannot be null")
     private Date date;
+
+    @NotNull(message = "Contribution type cannot be null")
+    private ContributionType contributionType;
 }
