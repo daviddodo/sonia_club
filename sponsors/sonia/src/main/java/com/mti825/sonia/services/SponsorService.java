@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mti825.sonia.dto.ContributionResponse;
 import com.mti825.sonia.dto.SponsorDto;
 import com.mti825.sonia.dto.SponsorResponse;
+import com.mti825.sonia.models.Contact;
 import com.mti825.sonia.models.Sponsor;
 import com.mti825.sonia.repository.SponsorRepository;
 
@@ -14,6 +16,12 @@ import com.mti825.sonia.repository.SponsorRepository;
 public class SponsorService {
     @Autowired
     private SponsorRepository sponsorRepository;
+
+    @Autowired
+    private ContactService contactService;
+
+    @Autowired
+    private ContributionService contributionService;
 
     /**
      * Creates a new sponsor.
@@ -83,6 +91,20 @@ public class SponsorService {
             throw new IllegalArgumentException("Sponsor not found with id: " + id);
         }
         sponsorRepository.deleteById(id);
+    }
+
+    /**     * Retrieves contributions associated with a sponsor by its ID.
+     *
+     * @param sponsorId the ID of the sponsor
+     * @return a list of ContributionResponse objects associated with the sponsor
+     */
+    public List<ContributionResponse> getContributionsBySponsorId(Long sponsorId) {
+        List<Contact> contacts = contactService.getEntitiesBySponsorId(sponsorId);
+        List<Long> contactIds = contacts.stream()
+            .map(Contact::getId)
+            .toList();
+
+        return contributionService.getContributionsByContactIds(contactIds);
     }
 
     /**

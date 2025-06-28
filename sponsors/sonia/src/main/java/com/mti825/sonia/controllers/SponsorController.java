@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mti825.sonia.dto.ContactResponse;
+import com.mti825.sonia.dto.ContributionResponse;
 import com.mti825.sonia.dto.SponsorDto;
 import com.mti825.sonia.dto.SponsorResponse;
 import com.mti825.sonia.services.ContactService;
@@ -96,8 +97,13 @@ public class SponsorController {
         return contactService.getContactsBySponsorId(id);
     }
 
-    // @GetMapping("/{id}/contributions")
-    // public List<ContributionResponse> getContributionsBySponsorId(@PathVariable Long id) {
-    //     return contributionService.getContributionsBySponsorId(id);
-    // }
+    /**     * Retrieves contributions associated with a sponsor by its ID.
+     *
+     * @param id the ID of the sponsor
+     * @return a list of ContributionResponse objects associated with the sponsor
+     */
+    @GetMapping(value="/{id}/contributions")
+    public List<ContributionResponse> getContributionsBySponsorId(@PathVariable Long id) {
+        return sponsorService.getContributionsBySponsorId(id);
+    }
 }

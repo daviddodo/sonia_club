@@ -61,8 +61,6 @@ public class ContributionController {
     public ContributionResponse getContributionById(@PathVariable Long id) {
         return contributionService.getContributionById(id);
     }
-
-    // todo add endpoints in Contact and Sponsor controllers to get contributions
     
     /**     * Deletes a contribution by its ID.
      *

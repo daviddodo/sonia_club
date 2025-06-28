@@ -65,8 +65,13 @@ public class ContactService {
         return mapToResponse(contact);
     }
 
+    /**     * Retrieves a contact by its ID.
+     *
+     * @param id the ID of the contact to retrieve
+     * @return the Contact object
+     * @throws IllegalArgumentException if no contact is found with the given ID
+     */
     public Contact findEntityById(Long id) {
-        // todo check if this works
         return contactRepository.findById(id)
             .orElseThrow(() -> new IllegalArgumentException("Contact not found with id: " + id));
     }
@@ -77,9 +82,18 @@ public class ContactService {
      * @return a list of ContactResponse objects associated with the sponsor
      */
     public List<ContactResponse> getContactsBySponsorId(Long sponsorId) {
-        List<Contact> contacts = contactRepository.findBySponsorId(sponsorId);
+        List<Contact> contacts = getEntitiesBySponsorId(sponsorId);
 
         return mapToResponseList(contacts);
+    }
+
+    /**     * Retrieves contacts associated with a sponsor by its ID.
+     *
+     * @param sponsorId the ID of the sponsor
+     * @return a list of Contact objects associated with the sponsor
+     */
+    public List<Contact> getEntitiesBySponsorId(Long sponsorId) {
+        return contactRepository.findBySponsorId(sponsorId);
     }
 
     /**     * Retrieves contacts by a partial name match.

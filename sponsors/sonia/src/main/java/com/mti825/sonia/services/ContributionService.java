@@ -70,11 +70,21 @@ public class ContributionService {
 
     /**     * Retrieves contributions associated with a contact by its ID.
      *
-     * @param sponsorId the ID of the sponsor
+     * @param contactId the ID of the contact
      * @return a list of ContributionResponse objects associated with the contact
      */
     public List<ContributionResponse> getContributionsByContactId(Long contactId) {
         List<Contribution> contributions = contributionRepository.findByContactId(contactId);
+        return mapToResponseList(contributions);
+    }
+
+    /**     * Retrieves contributions associated with many contacts by their ID.
+     *
+     * @param contactIds the list of ID of many contacts
+     * @return a list of ContributionResponse objects associated with the contact
+     */
+    public List<ContributionResponse> getContributionsByContactIds(List<Long> contactIds) {
+        List<Contribution> contributions = contributionRepository.findByContactIdIn(contactIds);
         return mapToResponseList(contributions);
     }
 
