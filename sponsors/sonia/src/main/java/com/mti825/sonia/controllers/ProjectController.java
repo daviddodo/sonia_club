@@ -7,8 +7,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mti825.sonia.dto.ContributionResponse;
 import com.mti825.sonia.dto.ProjectDto;
 import com.mti825.sonia.dto.ProjectResponse;
+import com.mti825.sonia.services.ContributionService;
 import com.mti825.sonia.services.ProjectService;
 
 import jakarta.validation.Valid;
@@ -26,6 +28,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class ProjectController {
     @Autowired
     private ProjectService projectService;
+
+    @Autowired
+    private ContributionService contributionService;
 
     /**     * Creates a new project.
      *
@@ -79,4 +84,15 @@ public class ProjectController {
     public void deleteProjectById(@PathVariable Long id) {
         projectService.deleteProjectById(id);
     }
+
+    /**     * Retrieves contributions associated with a project by its ID.
+     *
+     * @param id the ID of the project
+     * @return a list of ContributionResponse objects associated with the project
+     */
+    @GetMapping(value="/{id}/contributions")
+    public List<ContributionResponse> getContributionsByProjectId(@PathVariable Long id) {
+        return contributionService.getContributionsByProjectId(id);
+    }
+    
 }

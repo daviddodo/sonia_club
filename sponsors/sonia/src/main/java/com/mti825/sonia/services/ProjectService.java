@@ -49,10 +49,19 @@ public class ProjectService {
      * @throws IllegalArgumentException if no project is found with the given ID
      */
     public ProjectResponse getProjectById(Long id) {
-        Project project = projectRepository.findById(id)
-            .orElseThrow(() -> new IllegalArgumentException("Project not found with id: " + id));
-         
+        Project project = getEntityById(id);
         return mapToResponse(project);
+    }
+
+    /**     * Retrieves a project its ID.
+     *
+     * @param id the ID of the project
+     * @return a list of Project object associated with the ID
+     * @throws IllegalArgumentException if no project is found with the given ID
+     */
+    public Project getEntityById(Long id) {
+        return projectRepository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("Project not found with id: " + id));
     }
 
     /**     * Retrieves projects by a partial name match.

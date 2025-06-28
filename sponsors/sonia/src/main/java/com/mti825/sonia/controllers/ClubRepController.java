@@ -93,6 +93,6 @@ public class ClubRepController {
      */
     @GetMapping(value="/{id}/contributions")
     public List<ContributionResponse> getContributionsByClubRepId(@PathVariable Long id) {
-        return contributionService.getContributionByClubRepId(id);
+        return contributionService.getContributionsByClubRepId(id);
     }
 }

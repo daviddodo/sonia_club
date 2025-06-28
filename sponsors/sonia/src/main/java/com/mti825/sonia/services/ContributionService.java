@@ -10,6 +10,7 @@ import com.mti825.sonia.dto.ContributionResponse;
 import com.mti825.sonia.models.ClubRep;
 import com.mti825.sonia.models.Contact;
 import com.mti825.sonia.models.Contribution;
+import com.mti825.sonia.models.Project;
 import com.mti825.sonia.repository.ContributionRepository;
 
 @Service
@@ -22,6 +23,9 @@ public class ContributionService {
 
     @Autowired
     private ClubRepService clubRepService;
+
+    @Autowired
+    private ProjectService projectService;
 
     /**     * Creates a new contribution.
      *
@@ -97,8 +101,18 @@ public class ContributionService {
      * @param contactId the ID of the club rep
      * @return a list of ContributionResponse objects associated with the club rep
      */
-    public List<ContributionResponse> getContributionByClubRepId(Long clubRepId) {
+    public List<ContributionResponse> getContributionsByClubRepId(Long clubRepId) {
         List<Contribution> contributions = contributionRepository.findByClubRepId(clubRepId);
+        return mapToResponseList(contributions);
+    }
+
+    /**     * Retrieves contributions associated with a project by its ID.
+     *
+     * @param contactId the ID of the project
+     * @return a list of ContributionResponse objects associated with the project
+     */
+    public List<ContributionResponse> getContributionsByProjectId(Long projectId) {
+        List<Contribution> contributions = contributionRepository.findByProjectId(projectId);
         return mapToResponseList(contributions);
     }
 
@@ -119,6 +133,11 @@ public class ContributionService {
         if (contributionDto.getClubRepId() != null) {
             ClubRep clubRep = clubRepService.getEntityById(contributionDto.getClubRepId());
             contribution.setClubRep(clubRep);
+        }
+
+        if (contributionDto.getProjectId() != null) {
+            Project project = projectService.getEntityById(contributionDto.getProjectId());
+            contribution.setProject(project);
         }
 
         return contribution;
