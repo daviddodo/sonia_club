@@ -37,7 +37,7 @@
 					"response": []
 				},
 				{
-					"name": "get all sponsors",
+					"name": "all sponsors",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -55,7 +55,7 @@
 					"response": []
 				},
 				{
-					"name": "get sponsor by id",
+					"name": "sponsor by id",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -74,7 +74,7 @@
 					"response": []
 				},
 				{
-					"name": "get sponsors by name",
+					"name": "sponsors by name",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -99,7 +99,7 @@
 					"response": []
 				},
 				{
-					"name": "delete sponsor by id",
+					"name": "sponsor by id",
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -154,7 +154,7 @@
 					"response": []
 				},
 				{
-					"name": "get all contacts",
+					"name": "all contacts",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -175,7 +175,7 @@
 					"response": []
 				},
 				{
-					"name": "get contact by id",
+					"name": "contact by id",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -194,7 +194,7 @@
 					"response": []
 				},
 				{
-					"name": "get contacts by name",
+					"name": "contacts by name",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -219,7 +219,7 @@
 					"response": []
 				},
 				{
-					"name": "delete contact by id",
+					"name": "contact by id",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -246,7 +246,7 @@
 			"name": "3. enumerations",
 			"item": [
 				{
-					"name": "get all club departments",
+					"name": "all club departments",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -264,7 +264,7 @@
 					"response": []
 				},
 				{
-					"name": "get all contribution types",
+					"name": "all contribution types",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -315,7 +315,7 @@
 					"response": []
 				},
 				{
-					"name": "get all projects",
+					"name": "all projects",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -333,7 +333,7 @@
 					"response": []
 				},
 				{
-					"name": "get project by id",
+					"name": "project by id",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -352,7 +352,7 @@
 					"response": []
 				},
 				{
-					"name": "get project by name",
+					"name": "project by name",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -377,7 +377,7 @@
 					"response": []
 				},
 				{
-					"name": "delete project by id",
+					"name": "project by id",
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -428,7 +428,7 @@
 					"response": []
 				},
 				{
-					"name": "get all club reps",
+					"name": "all club reps",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -446,7 +446,7 @@
 					"response": []
 				},
 				{
-					"name": "get club rep by id",
+					"name": "club rep by id",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -465,7 +465,7 @@
 					"response": []
 				},
 				{
-					"name": "get club rep by name",
+					"name": "club rep by name",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -490,7 +490,7 @@
 					"response": []
 				},
 				{
-					"name": "delete club rep by id",
+					"name": "club rep by id",
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -558,7 +558,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"donation\": \"{{$randomBsAdjective}} {{$randomProduct}} {{$randomAlphaNumeric}}\",\r\n    \"description\": \"{{$randomLoremSentence}}\",\r\n    \"monetaryValue\": {{$randomPrice}},\r\n    \"temporalValue\": \"{{temporalValue}}\",\r\n    \"date\": {{$timestamp}},\r\n    \"contributionType\": \"{{contributionType}}\",\r\n    \"clubDepartments\": {{clubDepartments}},\r\n    \"contactId\": 3\r\n}",
+							"raw": "{\r\n    \"donation\": \"{{$randomBsAdjective}} {{$randomProduct}} {{$randomAlphaNumeric}}\",\r\n    \"description\": \"{{$randomLoremSentence}}\",\r\n    \"monetaryValue\": {{$randomPrice}},\r\n    \"temporalValue\": \"{{temporalValue}}\",\r\n    \"date\": {{$timestamp}},\r\n    \"contributionType\": \"{{contributionType}}\",\r\n    \"clubDepartments\": {{clubDepartments}},\r\n    \"contactId\": 3,\r\n    \"clubRepId\": 2,\r\n    \"projectId\": 3\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -579,7 +579,7 @@
 					"response": []
 				},
 				{
-					"name": "get all contributions",
+					"name": "all contributions",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -600,7 +600,7 @@
 					"response": []
 				},
 				{
-					"name": "get contribution by id",
+					"name": "contribution by id",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -622,7 +622,7 @@
 					"response": []
 				},
 				{
-					"name": "delete contribution by id",
+					"name": "contribution by id",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -638,6 +638,94 @@
 							"path": [
 								"contributions",
 								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "7. more ways to get contributions",
+			"item": [
+				{
+					"name": "contributions by contact id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/contacts/1/contributions",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contacts",
+								"1",
+								"contributions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "contributions by sponsor id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/sponsors/1/contributions",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sponsors",
+								"1",
+								"contributions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "contributions by club rep id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/club-reps/3/contributions",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"club-reps",
+								"3",
+								"contributions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "contributions by project id",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/projects/1/contributions",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projects",
+								"1",
+								"contributions"
 							]
 						}
 					},
