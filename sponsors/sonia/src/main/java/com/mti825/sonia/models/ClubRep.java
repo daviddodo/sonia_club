@@ -1,9 +1,13 @@
 package com.mti825.sonia.models;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,6 +21,9 @@ public class ClubRep {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @OneToMany(mappedBy = "clubRep", cascade = CascadeType.ALL)
+    private List<Contribution> contributions;
+
     private String fname;
     private String lname;
     private String email;
@@ -27,5 +34,9 @@ public class ClubRep {
         this.lname = lname;
         this.email = email;
         this.phone = phone;
+    }
+
+    public String getFullName() {
+        return String.format("%s %s", fname, lname);
     }
 }

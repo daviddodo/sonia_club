@@ -22,6 +22,7 @@ public class ContributionResponse {
     private String contributionType;
     private List<String> clubDepartments;
     private String contactName;
+    private String clubRepName;
 
     public ContributionResponse(Contribution contribution) {
         id = contribution.getId();
@@ -42,5 +43,6 @@ public class ContributionResponse {
         }
 
         contactName = contribution.getContact().getFullName();
+        clubRepName = contribution.getClubRep() != null ? contribution.getClubRep().getFullName() : "";
     }
 }

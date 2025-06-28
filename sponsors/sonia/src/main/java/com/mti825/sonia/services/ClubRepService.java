@@ -52,10 +52,19 @@ public class ClubRepService {
      * @throws IllegalArgumentException if no club rep is found with the given ID
      */
     public ClubRepResponse getClubRepById(Long id) {
-        ClubRep clubRep = clubRepRepository.findById(id)
-            .orElseThrow(() -> new IllegalArgumentException("Club rep not found with id: " + id));
-
+        ClubRep clubRep = getEntityById(id);
         return mapToResponse(clubRep);
+    }
+
+    /**     * Retrieves a club rep by its ID.
+     *
+     * @param id the ID of the club rep to retrieve
+     * @return the ClubRep object
+     * @throws IllegalArgumentException if no club rep is found with the given ID
+     */
+    public ClubRep getEntityById(Long id) {
+        return clubRepRepository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("Club rep not found with id: " + id));
     }
 
     /**     * Retrieves club reps by a partial name match.

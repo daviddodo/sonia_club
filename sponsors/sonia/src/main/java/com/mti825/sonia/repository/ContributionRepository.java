@@ -9,4 +9,5 @@ import com.mti825.sonia.models.Contribution;
 public interface ContributionRepository extends JpaRepository<Contribution, Long> {
     List<Contribution> findByContactId(Long contactId);
     List<Contribution> findByContactIdIn(List<Long> contactIds);
+    List<Contribution> findByClubRepId(Long clubRepId);
 }

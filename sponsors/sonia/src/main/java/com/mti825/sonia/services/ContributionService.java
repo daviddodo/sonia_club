@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.mti825.sonia.dto.ContributionDto;
 import com.mti825.sonia.dto.ContributionResponse;
+import com.mti825.sonia.models.ClubRep;
 import com.mti825.sonia.models.Contact;
 import com.mti825.sonia.models.Contribution;
 import com.mti825.sonia.repository.ContributionRepository;
@@ -18,6 +19,9 @@ public class ContributionService {
 
     @Autowired
     private ContactService contactService;
+
+    @Autowired
+    private ClubRepService clubRepService;
 
     /**     * Creates a new contribution.
      *
@@ -88,6 +92,16 @@ public class ContributionService {
         return mapToResponseList(contributions);
     }
 
+    /**     * Retrieves contributions associated with a club rep by its ID.
+     *
+     * @param contactId the ID of the club rep
+     * @return a list of ContributionResponse objects associated with the club rep
+     */
+    public List<ContributionResponse> getContributionByClubRepId(Long clubRepId) {
+        List<Contribution> contributions = contributionRepository.findByClubRepId(clubRepId);
+        return mapToResponseList(contributions);
+    }
+
     /**
      * Maps a ContributionDto to a Contribution entity.
      *
@@ -101,6 +115,11 @@ public class ContributionService {
 
         Contact contact = contactService.findEntityById(contributionDto.getContactId());
         contribution.setContact(contact);
+
+        if (contributionDto.getClubRepId() != null) {
+            ClubRep clubRep = clubRepService.getEntityById(contributionDto.getClubRepId());
+            contribution.setClubRep(clubRep);
+        }
 
         return contribution;
     }

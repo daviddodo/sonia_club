@@ -53,6 +53,10 @@ public class Contribution {
     @JoinColumn(name = "contact_id", nullable = false)
     private Contact contact;
 
+    @ManyToOne
+    @JoinColumn(name = "club_rep_id", nullable = true)
+    private ClubRep clubRep;
+
     public Contribution(ContributionDto contributionDto) {
         donation = contributionDto.getDonation();
         description = contributionDto.getDescription();
