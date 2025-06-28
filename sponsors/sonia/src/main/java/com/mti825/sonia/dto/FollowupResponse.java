@@ -4,12 +4,10 @@ import java.util.Date;
 
 import com.mti825.sonia.models.Followup;
 
-import jakarta.persistence.Entity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Entity
 @NoArgsConstructor
 public class FollowupResponse {
     private Long id;

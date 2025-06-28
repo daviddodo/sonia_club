@@ -43,7 +43,7 @@ public class ContributionService {
      *
      * This method returns a list of all contributions in the system.
      * It is useful for displaying all contributions on a page or in a list.
-     * @return a list of ContributionRespnse objects representing all contributions
+     * @return a list of ContributionResponse objects representing all contributions
      */
     public List<ContributionResponse> getAllContributions() {
         List<Contribution> contributions = contributionRepository.findAll();
@@ -119,7 +119,7 @@ public class ContributionService {
     /**
      * Maps a ContributionDto to a Contribution entity.
      *
-     * This method is used to convert the ContributionDt into a Contribution entity 
+     * This method is used to convert the ContributionDto into a Contribution entity 
      * that can be saved in the database.
      * @param contributionDto the DTO to convert
      * @return Contribution entity for saving into the database
