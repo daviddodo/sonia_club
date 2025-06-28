@@ -1,0 +1,26 @@
+package com.mti825.sonia.dto;
+
+import java.util.Date;
+
+import com.mti825.sonia.models.Followup;
+
+import jakarta.persistence.Entity;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Entity
+@NoArgsConstructor
+public class FollowupResponse {
+    private Long id;
+    private String description;
+    private Boolean active;
+    private Date date;
+
+    public FollowupResponse(Followup followup) {
+        id = followup.getId();
+        description = followup.getDescription();
+        active = followup.getActive();
+        date = followup.getDate();
+    }
+}
