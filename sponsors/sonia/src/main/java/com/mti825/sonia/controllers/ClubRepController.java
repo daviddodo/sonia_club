@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mti825.sonia.dto.ClubRepDto;
 import com.mti825.sonia.dto.ClubRepResponse;
+import com.mti825.sonia.dto.ContributionResponse;
 import com.mti825.sonia.services.ClubRepService;
+import com.mti825.sonia.services.ContributionService;
 
 import jakarta.validation.Valid;
 
@@ -27,6 +29,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class ClubRepController {
     @Autowired
     private ClubRepService clubRepService;
+
+    @Autowired
+    private ContributionService contributionService;
 
     /**     * Creates a new club rep.
      *
@@ -55,7 +60,7 @@ public class ClubRepController {
      * @return the ClubRepResponse DTO
      * @throws IllegalArgumentException if no club rep is found with the given ID
      */
-    @GetMapping(value="{id}")
+    @GetMapping(value="/{id}")
     public ClubRepResponse getClubRepById(@PathVariable Long id) {
         return clubRepService.getClubRepById(id);
     }
@@ -66,7 +71,7 @@ public class ClubRepController {
      * @return a list of ClubRep objects matching the partial name
      */
     @GetMapping("/search")
-    public List<ClubRepResponse> getMethodName(@RequestParam String name) {
+    public List<ClubRepResponse> getClubRepByPartialName(@RequestParam String name) {
         return clubRepService.getClubRepByPartialName(name);
     }
     
@@ -75,9 +80,19 @@ public class ClubRepController {
      * @param id the ID of the club rep to delete
      * @throws IllegalArgumentException if no club rep is found with the given ID
      */
-    @DeleteMapping(value="{id}")
+    @DeleteMapping(value="/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteClubRepByid(@PathVariable Long id) {
         clubRepService.deleteClubRepByid(id);
+    }
+
+    /**     * Retrieves contributions associated with a club rep by its ID.
+     *
+     * @param id the ID of the club rep
+     * @return a list of ContributionResponse objects associated with the club rep
+     */
+    @GetMapping(value="/{id}/contributions")
+    public List<ContributionResponse> getContributionsByClubRepId(@PathVariable Long id) {
+        return contributionService.getContributionByClubRepId(id);
     }
 }
