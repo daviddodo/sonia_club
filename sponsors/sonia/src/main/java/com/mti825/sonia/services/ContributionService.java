@@ -68,6 +68,16 @@ public class ContributionService {
         contributionRepository.deleteById(id);
     }
 
+    /**     * Retrieves contributions associated with a contact by its ID.
+     *
+     * @param sponsorId the ID of the sponsor
+     * @return a list of ContributionResponse objects associated with the contact
+     */
+    public List<ContributionResponse> getContributionsByContactId(Long contactId) {
+        List<Contribution> contributions = contributionRepository.findByContactId(contactId);
+        return mapToResponseList(contributions);
+    }
+
     /**
      * Maps a ContributionDto to a Contribution entity.
      *

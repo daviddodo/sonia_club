@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mti825.sonia.dto.ContactDto;
 import com.mti825.sonia.dto.ContactResponse;
+import com.mti825.sonia.dto.ContributionResponse;
 import com.mti825.sonia.services.ContactService;
+import com.mti825.sonia.services.ContributionService;
 
 import jakarta.validation.Valid;
 
@@ -27,6 +29,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class ContactController {
     @Autowired
     private ContactService contactService;
+
+    @Autowired
+    private ContributionService contributionService;
 
     /**     * Creates a new contact.
      *
@@ -80,5 +85,15 @@ public class ContactController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteContactById(@PathVariable Long id) {
         contactService.deleteContactById(id);
+    }
+
+    /**     * Retrieves contributions associated with a contact by its ID.
+     *
+     * @param id the ID of the contact
+     * @return a list of ContributionResponse objects associated with the contact
+     */
+    @GetMapping(value="/{id}/contributions")
+    public List<ContributionResponse> getContributionsByContactId(@PathVariable Long id) {
+        return contributionService.getContributionsByContactId(id);
     }
 }
