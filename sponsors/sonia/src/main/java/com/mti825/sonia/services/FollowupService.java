@@ -55,6 +55,11 @@ public class FollowupService {
         return new FollowupResponse(followup);
     }
 
+    public List<FollowupResponse> getFollowupsByContributionId(Long id) {
+        List<Followup> followups = followupRepository.findByContributionId(id);
+        return mapToResponseList(followups);
+    }
+
     /**     * Deletes a followup by its ID.
      *
      * This method will throw an IllegalArgumentException if no followup is found with the given ID.

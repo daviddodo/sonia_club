@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mti825.sonia.dto.ContributionDto;
 import com.mti825.sonia.dto.ContributionResponse;
+import com.mti825.sonia.dto.FollowupResponse;
 import com.mti825.sonia.models.enums.ContributionType;
 import com.mti825.sonia.services.ContributionService;
+import com.mti825.sonia.services.FollowupService;
 
 import jakarta.validation.Valid;
 
@@ -23,11 +25,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+
 @RestController
 @RequestMapping("/contributions")
 public class ContributionController {
     @Autowired
     ContributionService contributionService;
+
+    @Autowired
+    FollowupService followupService;
 
     /**     * Creates a new contribution.
      *
@@ -60,6 +66,16 @@ public class ContributionController {
     @GetMapping(value = "/{id}")
     public ContributionResponse getContributionById(@PathVariable Long id) {
         return contributionService.getContributionById(id);
+    }
+
+    /**     * Retrieves followups associated with a contribution by its ID.
+     *
+     * @param id the ID of the contribution
+     * @return a list of FollowupResponse objects associated with the contribution
+     */
+    @GetMapping(value="/{id}/followups")
+    public List<FollowupResponse> getFollowupsByContributionId(@PathVariable Long id) {
+        return followupService.getFollowupsByContributionId(id);
     }
     
     /**     * Deletes a contribution by its ID.
