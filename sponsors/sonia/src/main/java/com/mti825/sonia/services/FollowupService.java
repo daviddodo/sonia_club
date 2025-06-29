@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.mti825.sonia.dto.FollowupDto;
 import com.mti825.sonia.dto.FollowupResponse;
+import com.mti825.sonia.models.Contribution;
 import com.mti825.sonia.models.Followup;
 import com.mti825.sonia.repository.FollowupRepository;
 
@@ -14,6 +15,9 @@ import com.mti825.sonia.repository.FollowupRepository;
 public class FollowupService {
     @Autowired
     private FollowupRepository followupRepository;
+
+    @Autowired
+    private ContributionService contributionService;
 
     /**     * Creates a new followup.
      *
@@ -63,7 +67,6 @@ public class FollowupService {
         followupRepository.deleteById(id);
     }
 
-
     /**
      * Maps a FollowupDto to a Followup entity.
      *
@@ -73,7 +76,14 @@ public class FollowupService {
      * @return Followup entity for saving into the database
      */
     private Followup createFromDto(FollowupDto followupDto) {
-        return new Followup(followupDto);
+        Followup followup = new Followup(followupDto);
+
+        if (followupDto.getContributionId() != null) {
+            Contribution contribution = contributionService.getEntityById(followupDto.getContributionId());
+            followup.setContribution(contribution);
+        }
+
+        return followup;
     }
 
     private List<FollowupResponse> mapToResponseList(List<Followup> followups) {

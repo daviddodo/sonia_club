@@ -61,7 +61,7 @@ public class ContactService {
      * @throws IllegalArgumentException if no contact is found with the given ID
      */
     public ContactResponse getContactById(Long id) {
-        Contact contact = findEntityById(id);
+        Contact contact = getEntityById(id);
         return mapToResponse(contact);
     }
 
@@ -71,7 +71,7 @@ public class ContactService {
      * @return the Contact object
      * @throws IllegalArgumentException if no contact is found with the given ID
      */
-    public Contact findEntityById(Long id) {
+    public Contact getEntityById(Long id) {
         return contactRepository.findById(id)
             .orElseThrow(() -> new IllegalArgumentException("Contact not found with id: " + id));
     }

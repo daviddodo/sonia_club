@@ -14,11 +14,13 @@ public class FollowupResponse {
     private String description;
     private Boolean active;
     private Date date;
+    private String contribution;
 
     public FollowupResponse(Followup followup) {
         id = followup.getId();
         description = followup.getDescription();
         active = followup.getActive();
         date = followup.getDate();
+        contribution = followup.getContribution().getDonation();
     }
 }

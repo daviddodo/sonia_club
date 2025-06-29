@@ -58,10 +58,19 @@ public class ContributionService {
      * @throws IllegalArgumentException if no contribution is found with the given ID
      */
     public ContributionResponse getContributionById(Long id) {
-        Contribution contribution = contributionRepository.findById(id)
-            .orElseThrow(() -> new IllegalArgumentException("Contribution not found with id " + id));
-
+        Contribution contribution = getEntityById(id);
         return new ContributionResponse(contribution);
+    }
+
+    /**     * Retrieves a contribution by its ID.
+     *
+     * @param id the ID of the contribution to retrieve
+     * @return the Contribution entity
+     * @throws IllegalArgumentException if no contribution is found with the given ID
+     */
+    public Contribution getEntityById(Long id) {
+        return contributionRepository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("Contribution not found with id " + id));
     }
 
     /**     * Deletes a contribution by its ID.
@@ -127,7 +136,7 @@ public class ContributionService {
     private Contribution createFromDto(ContributionDto contributionDto) {
         Contribution contribution = new Contribution(contributionDto);
 
-        Contact contact = contactService.findEntityById(contributionDto.getContactId());
+        Contact contact = contactService.getEntityById(contributionDto.getContactId());
         contribution.setContact(contact);
 
         if (contributionDto.getClubRepId() != null) {

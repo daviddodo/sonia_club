@@ -22,4 +22,7 @@ public class FollowupDto {
 
     @NotNull(message = "Date cannot be null")
     private Date date;
+
+    @NotNull(message = "Contribution ID cannot be null")
+    private Long contributionId;
 }
