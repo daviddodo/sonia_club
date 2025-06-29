@@ -1,0 +1,13 @@
+@startuml
+
+-> Controller : HTTP Request (DTO, ID or Query)
+Controller -> Service : Call with data
+Service -> Service : Optionally call other services
+Service -> Repository : Fetch or save entity
+Repository -> Database : SQL query (JPA)
+Database --> Repository : Entity or success
+Repository --> Service : Entity or result
+Service --> Controller : DTO response object
+<-- Controller : HTTP Response (JSON)
+
+@enduml
