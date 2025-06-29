@@ -1,0 +1,36 @@
+@startuml
+
+package controllers {
+    class EntityController
+}
+
+package services {
+    class EntityService
+    class OtherEntityServices
+}
+
+package repository {
+    class EntityRepository
+}
+
+package dto {
+    class EntityDto
+    class EntityResponse
+}
+
+package models {
+    class Entity
+}
+
+EntityController --> EntityService : "Makes requests to"
+EntityController --> EntityDto : "Gets requests containing"
+EntityController --> EntityResponse : "Returns responses containing"
+
+EntityService --> OtherEntityServices : "Interacts with"
+EntityService --> EntityRepository : "Makes queries to"
+EntityRepository --> Entity : "Saves or fetches"
+
+EntityDto --> Entity : "Gets mapped into"
+Entity --> EntityResponse : "Gets mapped into"
+
+@enduml

@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mti825.sonia.dto.ClubRepResponse;
 import com.mti825.sonia.dto.ContributionDto;
 import com.mti825.sonia.dto.ContributionResponse;
 import com.mti825.sonia.dto.FollowupResponse;
