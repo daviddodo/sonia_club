@@ -8,4 +8,5 @@ import com.mti825.sonia.models.Followup;
 
 public interface FollowupRepository extends JpaRepository<Followup, Long> {
     List<Followup> findByContributionId(Long id);
+    List<Followup> findByActive(Boolean active);
 }

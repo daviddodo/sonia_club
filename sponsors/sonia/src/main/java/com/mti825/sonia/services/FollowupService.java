@@ -55,6 +55,22 @@ public class FollowupService {
         return new FollowupResponse(followup);
     }
 
+    /**     * Retrieves a followup by its active value.
+     *
+     * @param active the Boolean value of the followup to retrieve
+     * @return a list of FollowupResponse objects
+     */
+    public List<FollowupResponse> getFollowupsByStatus(Boolean active) {
+        List<Followup> followups = followupRepository.findByActive(active);
+        return mapToResponseList(followups);
+    }
+
+
+    /**     * Retrieves followups associated with a contribution by its ID.
+     *
+     * @param id the ID of the contribution
+     * @return a list of FollowupResponse objects associated with the contribution
+     */
     public List<FollowupResponse> getFollowupsByContributionId(Long id) {
         List<Followup> followups = followupRepository.findByContributionId(id);
         return mapToResponseList(followups);
@@ -91,6 +107,11 @@ public class FollowupService {
         return followup;
     }
 
+    /**     * Maps a list of Followup entities to a list of FollowupResponse DTOs.
+     *
+     * @param followups the list of Followup entities to map
+     * @return a list of FollowupResponse DTOs
+     */
     private List<FollowupResponse> mapToResponseList(List<Followup> followups) {
         return followups.stream()
             .map(FollowupResponse::new)

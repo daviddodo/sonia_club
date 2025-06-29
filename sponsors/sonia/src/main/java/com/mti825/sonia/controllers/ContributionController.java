@@ -5,9 +5,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mti825.sonia.dto.ClubRepResponse;
 import com.mti825.sonia.dto.ContributionDto;
 import com.mti825.sonia.dto.ContributionResponse;
 import com.mti825.sonia.dto.FollowupResponse;
@@ -55,6 +57,16 @@ public class ContributionController {
     @GetMapping
     public List<ContributionResponse> getAllContributions() {
         return contributionService.getAllContributions();
+    }
+
+    /**     * Retrieves club reps by a partial name match.
+     *
+     * @param name the partial name to search for
+     * @return a list of ClubRep objects matching the partial name
+     */
+    @GetMapping("/search")
+    public List<FollowupResponse> getFollowupsByStatus(@RequestParam Boolean active) {
+        return followupService.getFollowupsByStatus(active);
     }
 
     /**     * Retrieves a contribution by its ID.
