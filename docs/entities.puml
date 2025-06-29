@@ -1,7 +1,7 @@
 @startuml
 entity sponsors {
     id: int
-    sponsor_name: string
+    name: string
     description: string
 }
 
@@ -52,14 +52,14 @@ entity follow_ups {
     id: int
     date: date
     description: string
-    status: string
+    active: boolean
     --
     contribution_id: int <<FK>>
 }
 
 entity projects {
     id: int
-    project_name: string
+    name: string
     description: string
 }
 
@@ -71,23 +71,14 @@ enum club_departments <<enum>> {
     SOFTWARE
 }
 
-sponsors ||-r--o{ contacts : "employ"
+sponsors ||-r--o{ contacts : "employ \n0 or many contacts"
 contacts ||-d-|{ contributions : "coordinated 1 or many \ncontributions"
-sponsors ||-d-|{ contributions : "donated 1 or many \ncontributions"
 club_reps ||-d-o{ contributions : "obtained 0 or many \ncontributions"
 
 projects ||-r-o{ contributions : "benefited from 0 or many \ncontributions"
-club_departments }o-l-o{ contributions : "0 or many contributions \nhelped 0 or many club departments"
+club_departments }o-l-|| contributions : "helped 0 or many club departments"
 
 contributions ||-d-|| contribution_types : "are of type"
 contributions ||-d-o{ follow_ups : "require 0 or many \nfollow up(s)"
-
-note right of follow_ups::status
-    - pending
-    - in progress
-    - completed
-    - cancelled
-    - closed
-end note
 
 @enduml
