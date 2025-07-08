@@ -1,3 +1,42 @@
+# Lean Six Management Project for an IT System
+
+## Table of Contents
+- [Overview](#overview)
+  - [Backend tools](#backend-tools)
+  - [Tools](#tools)
+  - [Environment variables](#environment-variables)
+- [Contextual information for the project](#context)
+  - [The assignment](#assignment)
+  - [The client : SONIA](#client)
+  - [The challenge](#challenge)
+  - [The solution](#solution)
+
+
+## Overview
+### Backend tools
+- **Java 17** - Runtime environment for the application;
+- **Spring Boot** - Main framework used for building the API and managing application configuration;
+- **Lombok** - Reduces boilerplate code by auto-generating getters, setters and constructors;
+- **JPA (Jakarta)** - ORM specification used to map Java classes to database tables;
+- **PostgreSQL** - Relational database used to store application data.
+
+**Note** : there is currently no frontend. API interaction is handled via Postman using the request file in /docs.
+
+### Tools
+- Docker - Containerization platform used to package the app and its dependencies;
+- Docker Compose - Used to orchestrate and run the app and database together;
+- Postman - API client used to send HTTP requests for testing and interacting with the backend.
+
+## Environment variables
+For simplicity, a _.env_ file should be created at the root of the project for the proper connection from the Spring Boot app to the container with a PostgreSQL database. The following variables are required, which are used in the _docker-compose.yml_ file:
+- POSTGRES_DB: name of the database;
+- POSTGRES_USER: preferred username for the database, useful for connecting;
+- POSTGRES_PASSWORD: preferred password;
+- SPRING_DATASOURCE_URL: database URL to allow the Spring Boot app to connect to the database, should use the following format: *jdbc:postgresql://`host`:`port`/`db_name`*
+  - host: referring to _docker-compose.yml_, it should be named *postgres*;
+  - port: the value is usually *5432*;
+  - db_name: the value should match POSTGRES_DB.
+
 # Contextual information for the project
 
 ## The assignment
@@ -25,17 +64,3 @@ All in all, _Extra Processing_ was identified as the main waste at the heart of 
 To help mitigate the _Extra Processing_ waste, a prototype was devised to tackle the issue at its base. The idea is to standardize the process for recording a contribution and contact information for a sponsor, all while facilitating the information research. Making a tool that becomes the single source of information for SONIA would allow the club reps to prevent having to go through extra steps of checking through many tools and people, with the potential outcome of not finding the desired information.
 
 And so, the following solution was created : a simple Spring Boot API that allows its users to record information in a PostgreSQL database. Considering that this is a prototype, there is no frontend app, nor any rigorous testing nor complete functionalities. The basics for recording information was prioritized, with the idea that the scientific club would take the effort in tailoring the solution as they need to.
-
-# The project
-spring boot app blabla
-postgresql
-docker containers
-## Environment variables
-For simplicity, a _.env_ file should be created at the root of the project for the proper connection from the Spring Boot app to the container with a PostgreSQL database. The following variables are required, which are used in the _docker-compose.yml_ file:
-- POSTGRES_DB: name of the database;
-- POSTGRES_USER: preferred username for the database, useful for connecting;
-- POSTGRES_PASSWORD: preferred password;
-- SPRING_DATASOURCE_URL: database URL to allow the Spring Boot app to connect to the database, should use the following format: *jdbc:postgresql://`host`:`port`/`db_name`*
-  - host: referring to _docker-compose.yml_, it should be named *postgres*;
-  - port: the value is usually *5432*;
-  - db_name: the value should match POSTGRES_DB.
