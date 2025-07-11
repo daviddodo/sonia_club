@@ -5,7 +5,15 @@ This project, as part of a deliverable for the masters course MTI825 at École d
 - [Overview](#overview)
   - [Backend tools](#backend-tools)
   - [Tools](#tools)
-  - [Environment variables](#environment-variables)
+- [Using the app](#using-the-app)
+  - [Prequisites](#prerequisites)
+  - [Developer mode](#developer-mode)
+    - [Additional prerequisites](#additional-prerequisites)
+    - [Setup instructions](#setup-instructions-1)
+    - [Useful commands](#useful-commands)
+  - [Stable mode](#stable-mode)
+    - [Setup instructions](#setup-instructions-2)
+    - [Teardown instructions](#teardown-instructions)
 - [Contextual information for the project](#context)
   - [The assignment](#assignment)
   - [The client : SONIA](#client)
@@ -161,3 +169,20 @@ All in all, _Extra Processing_ was identified as the main waste at the heart of 
 To help mitigate the _Extra Processing_ waste, a prototype was devised to tackle the issue at its base. The idea is to standardize the process for recording a contribution and contact information for a sponsor, all while facilitating the information research. Making a tool that becomes the single source of information for SONIA would allow the club reps to prevent having to go through extra steps of checking through many tools and people, with the potential outcome of not finding the desired information.
 
 And so, the following solution was created : a simple Spring Boot API that allows its users to record information in a PostgreSQL database. Considering that this is a prototype, there is no frontend app, nor any rigorous testing nor complete functionalities. The basics for recording information was prioritized, with the idea that the scientific club would take the effort in tailoring the solution as they need to.
+
+## Solution architecture
+### Entity relationship diagram
+![alt text](./docs/diagrams/png/erd.png)
+As indicated by the diagram, **contributions are at the heart of the system**, representing donations made by sponsor through tehir contacts. The structure makes it easier to track each contribution back to its source - both the sponsor organization and the individual contact involved.
+
+Contributions also help progress the scientific club's projects and are obtained by club reps, allowing them to be searched through them.
+
+Additionally, the system simplified the process of tracking follow-ups after a contribution is made ensuring that the club can uphold its commiments and maintain their relationships with the sponsors.
+
+
+### High level class/package diagram
+![alt text](./docs/diagrams/png/package-class.png)
+
+
+### High level sequence diagram
+![alt text](./docs/diagrams/png/general%20dataflow.png)
