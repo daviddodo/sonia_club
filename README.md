@@ -176,7 +176,7 @@ And so, the following solution was created : a simple Spring Boot API that allow
 
 ## Solution architecture
 ### Entity relationship diagram
-![alt text](./docs/diagrams/png/erd.png)
+![ERD diagram](./docs/diagrams/png/erd.png)
 As indicated by the diagram, **contributions are at the heart of the system**, representing donations made by sponsor through tehir contacts. The structure makes it easier to track each contribution back to its source - both the sponsor organization and the individual contact involved.
 
 Contributions also help progress the scientific club's projects and are obtained by club reps, allowing them to be searched through them.
@@ -185,7 +185,7 @@ Additionally, the system simplified the process of tracking follow-ups after a c
 
 
 ### High level class/package diagram
-![alt text](./docs/diagrams/png/package-class.png)
+![Class diagram](./docs/diagrams/png/package-class.png)
 This diagram illustrates how the backend classes of the project interact across layers. While the application includes many classes and packages, this simplified view focuses on the general data flow for a typical entity.
 
 At the top of the architecture is the **controller**, which acts as the entry point for handling HTTP requests. It coordinates with the **service** layer, which contains the core business logic and orchestrates operations involving the database.
@@ -194,5 +194,20 @@ The **service** delegates data access tasks to the **repository**, which interac
 
 To support clean separation between internal models and client-facing data, the system uses *DTOs* (Data Transfer Objects). The **EntityDto** defines the expected format of incoming requests, while the **EntityResponse** specifies how responses are structured when returned to the client.
 
+When updating or extending backend functionality, developers should respect these class relationships and adhere to this layered architecture to maintain clean separation of concerns.
+
+
 ### Generalized sequence diagram
-![alt text](./docs/diagrams/png/general%20dataflow.png)
+![Sequence diagram](./docs/diagrams/png/general%20dataflow.png)
+This diagram illustrates the typical flow of data through the backend, from the moment a user makes an HTTP request to the response being sent back. It complements the class/package overview by showing the runtime sequence of interactions.
+1. The Controller receives an HTTP request. This request often contains a DTO, an ID, or query parameters.
+2. The controller passes this data to the Service layer, which contains the core business logic.
+3. The service may optionally communicate with other services, depending on the operation.
+4. The service then calls the appropriate Repository to interact with the database.
+5. Using JPA, the repository performs an SQL query to fetch or persist data in the Database.
+6. nce the data is retrieved or saved, it flows back through the service and is transformed into a response DTO.
+7. Finally, the controller returns a JSON response to the user.
+
+This flow ensures that responsibilities are clearly separated between layers, making the system modular, testable, and easier to maintain.
+
+Developers should follow this flow when building new endpoints to ensure consistency and maintainability.
