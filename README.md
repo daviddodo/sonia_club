@@ -19,6 +19,10 @@ This project, as part of a deliverable for the masters course MTI825 at École d
   - [The client : SONIA](#client)
   - [The challenge](#challenge)
   - [The solution](#solution)
+- [Solution architecture](#solution-architecture)
+  - [Entity relationship diagram](#entity-relationship-diagram)
+  - [High level class/package diagram](#high-level-classpackage-diagram)
+  - [Generalized sequence diagram](#generalized-sequence-diagram)
 
 
 ## Overview
@@ -182,7 +186,13 @@ Additionally, the system simplified the process of tracking follow-ups after a c
 
 ### High level class/package diagram
 ![alt text](./docs/diagrams/png/package-class.png)
+This diagram illustrates how the backend classes of the project interact across layers. While the application includes many classes and packages, this simplified view focuses on the general data flow for a typical entity.
 
+At the top of the architecture is the **controller**, which acts as the entry point for handling HTTP requests. It coordinates with the **service** layer, which contains the core business logic and orchestrates operations involving the database.
 
-### High level sequence diagram
+The **service** delegates data access tasks to the **repository**, which interacts with the database using JPA to query or persist data. The **repository** fetches or saves instances of the **entity**, which represents the structure of the data stored in the PostgreSQL database.
+
+To support clean separation between internal models and client-facing data, the system uses *DTOs* (Data Transfer Objects). The **EntityDto** defines the expected format of incoming requests, while the **EntityResponse** specifies how responses are structured when returned to the client.
+
+### Generalized sequence diagram
 ![alt text](./docs/diagrams/png/general%20dataflow.png)
