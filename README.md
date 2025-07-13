@@ -5,20 +5,20 @@ This project, as part of a deliverable for the masters course MTI825 at École d
 - [Overview](#overview)
   - [Backend tools](#backend-tools)
   - [Tools](#tools)
-- [Using the app](#using-the-app)
-  - [Prequisites](#prerequisites)
+- [Getting started](#getting-started)
+  - [Prerequisites (for all modes)](#prerequisites-for-all-modes)
   - [Developer mode](#developer-mode)
     - [Additional prerequisites](#additional-prerequisites)
-    - [Setup instructions](#setup-instructions-1)
+    - [Setup instructions](#setup-instructions)
     - [Useful commands](#useful-commands)
   - [Stable mode](#stable-mode)
-    - [Setup instructions](#setup-instructions-2)
+    - [Setup instructions](#setup-instructions-1)
     - [Teardown instructions](#teardown-instructions)
-- [Contextual information for the project](#context)
-  - [The assignment](#assignment)
-  - [The client : SONIA](#client)
-  - [The challenge](#challenge)
-  - [The solution](#solution)
+- [Contextual information for the project](#contextual-information-for-the-project)
+  - [Contextual information for the project](#contextual-information-for-the-project)
+  - [The client : SONIA](#the-client--sonia)
+  - [The challenge](#the-challenge)
+  - [The solution](#the-solution)
 - [Solution architecture](#solution-architecture)
   - [Entity relationship diagram](#entity-relationship-diagram)
   - [High level class/package diagram](#high-level-classpackage-diagram)
@@ -43,8 +43,8 @@ This project, as part of a deliverable for the masters course MTI825 at École d
 - Postman - API client used to send HTTP requests for testing and interacting with the backend.
 
 
-## Using the app
-### Prerequisites
+## Getting started
+### Prerequisites (for all modes)
 Before running the app in any mode, ensure the following tools are installed:
 - **Docker Desktop**, which includes Docker Engine and Docker Compose:
   - [Mac installation guide](https://docs.docker.com/desktop/setup/install/mac-install/);
