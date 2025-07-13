@@ -15,7 +15,6 @@ This project, as part of a deliverable for the masters course MTI825 at École d
     - [Setup instructions](#setup-instructions-1)
     - [Teardown instructions](#teardown-instructions)
 - [Contextual information for the project](#contextual-information-for-the-project)
-  - [Contextual information for the project](#contextual-information-for-the-project)
   - [The client : SONIA](#the-client--sonia)
   - [The challenge](#the-challenge)
   - [The solution](#the-solution)
@@ -81,7 +80,7 @@ docker run --name <postgres_container_name> \
   -d postgres
 ```
   - Optional checks: 
-    - Open Docker Desktop and verify that a container with the name your specified is running;
+    - Open Docker Desktop and verify that a container with the name you specified is running;
     - run `docker ps` and verify that a PostgreSQL container is up on port 5432;
 5. Run `mvn spring-boot:run`;
     - Wait for the project to build, look for *`Tomcat started on port 8080 (http) with context path '/'`*;
@@ -153,12 +152,12 @@ SONIA is a scientific student club à École de Technologie Supérieure (ÉTS) t
 
 
 ## The context
-To fund their project activities, the scientific club depends on investments. A part of it originates from ÉTS, but a bigger percentage of it comes from external organisations, referred to as sponsors. A sponsor's contribution can be of various types outside of monetary, such as the following:
+To fund their project activities, the scientific club depends on investments. A part of it originates from ÉTS, but a bigger percentage of it comes from external organisations, referred to as sponsors. A sponsor's contribution can be of various non-monetary types, such as the following:
 - Material, like parts or equipements;
 - Environment, like lending a swimming pool for tests;
 - Service, like verifying a circuit board.
 
-Considering the various types of contributions, SONIA usually quantifies their value in terms of monetary value or time saved in terms of progressing a project. The issue is the informal process within the scientific club for persisting the data using various inadapted tools: various Excel files, emails or simply a club reps remembering in their own head.
+Considering the various types of contributions, SONIA usually quantifies their value in terms of monetary value or time saved in terms of progressing a project. The issue is the informal process within the scientific club for persisting the data using various inadequate tools: various Excel files, emails or simply a club reps remembering in their own head.
 
 
 ## The challenge
@@ -177,11 +176,11 @@ And so, the following solution was created : a simple Spring Boot API that allow
 ## Solution architecture
 ### Entity relationship diagram
 ![ERD diagram](./docs/diagrams/png/erd.png)
-As indicated by the diagram, **contributions are at the heart of the system**, representing donations made by sponsor through tehir contacts. The structure makes it easier to track each contribution back to its source - both the sponsor organization and the individual contact involved.
+As indicated by the diagram, **contributions are at the heart of the system**, representing donations made by sponsor through their contacts. The structure makes it easier to track each contribution back to its source - both the sponsor organization and the individual contact involved.
 
 Contributions also help progress the scientific club's projects and are obtained by club reps, allowing them to be searched through them.
 
-Additionally, the system simplified the process of tracking follow-ups after a contribution is made ensuring that the club can uphold its commiments and maintain their relationships with the sponsors.
+Additionally, the system simplified the process of tracking follow-ups after a contribution is made ensuring that the club can uphold its commitments and maintain their relationships with the sponsors.
 
 
 ### High level class/package diagram
