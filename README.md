@@ -48,7 +48,7 @@ Before running the app in any mode, ensure the following tools are installed:
 - **Docker Desktop**, which includes Docker Engine and Docker Compose:
   - [Mac installation guide](https://docs.docker.com/desktop/setup/install/mac-install/);
   - [Windows installation guide](https://docs.docker.com/desktop/setup/install/windows-install/);
-- [**Postman**](https://www.postman.com/downloads/) - for testing API requests;
+- [**Postman**](https://www.postman.com/downloads/) - for testing API requests.
 
 
 ### Developer mode
@@ -61,16 +61,16 @@ Use this when:
 #### Additional prerequisites
 - [**Apache Maven**](https://maven.apache.org/download.cgi) - for running the app
   - Make sure to follow the [installation instructions](https://maven.apache.org/install.html);
-  - Verify the installation by running `mvn -v`;
+  - Verify the installation by running `mvn -v`
 
 
 #### Setup instructions
 1. **Clone the project** to your machine;
 2. **Open the project** with your preferred IDE (I used Visual Studio Code);
-3. Open a terminal within your IDE (Ctrl+` for Visual studio code);
+3. Open a terminal within your IDE (`Ctrl+`\` for Visual studio code);
     - Ensure that the terminal points at the root of the project;
-5. Run `cd sponsors/sonia`;
-4. Create a PostgreSQL container:
+4. Run `cd sponsors/sonia`;
+5. Create a PostgreSQL container:
 ```
 docker run --name <postgres_container_name> \
   -e POSTGRES_DB=<your_database_name> \
@@ -91,10 +91,10 @@ docker run --name <postgres_container_name> \
   - As mentioned by the file, these values should only be used for development purposes; 
   - Optional checks: 
     - Open Docker Desktop and verify that a container with the name you specified is running;
-    - run `docker ps` and verify that a PostgreSQL container is up on port 5432;
-5. Run `mvn spring-boot:run`;
+    - Run `docker ps` and verify that a PostgreSQL container is up on port 5432;
+6. Run `mvn spring-boot:run`
     - Wait for the project to build, look for *`Tomcat started on port 8080 (http) with context path '/'`*;
-    - Optional: verify that [localhost](http://localhost:8080) displays the message *`Welcome to Sonia!`*;
+    - Optional: verify that [localhost](http://localhost:8080) displays the message *`Welcome to Sonia!`*.
 
 
 #### Useful commands
@@ -107,12 +107,12 @@ Connecting to the PostgreSQL database
 
 Reloading the project in case the build system and the IDE (Visual Studio Code) get out of sync
 1. `Ctrl+Shift+p` and run `Developer:Reload Window`
-2. mvn clean install
-3. mvn spring-boot:run
+2. `mvn clean install`
+3. `mvn spring-boot:run`
 
 Stopping the PostgreSQL container, which is useful for liberating port 5432 when running in `stable mode`
-1. Stop the container with `docker container stop <postgres_container_name>`;
-2. Verify that the container is no longer running with `docker ps`.
+1. Stop the container with `docker container stop <postgres_container_name>`
+2. Verify that the container is no longer running with `docker ps`
 
 
 ### Stable mode
@@ -136,9 +136,9 @@ Use this when:
   - `port` is usually 5432;
   - `db_name` should match the value assigned to POSTGRES_DB;
   - Note: Do not include spaces around = in the .env file (e.g., use KEY=value, not KEY = value), otherwise, docker-compose.yml may fail to read the variables correctly, causing the PostgreSQL container to not initialize properly and preventing the Spring Boot application from connecting to the database, resulting in a startup failure;
-4. Open a terminal within your IDE (Ctrl+` for Visual studio code);
+4. Open a terminal within your IDE (`Ctrl+`\` for Visual studio code);
     - Ensure that the terminal points at the root of the project;
-5. Run `docker compose up --build`;
+5. Run `docker compose up --build`
     - Wait for the project to build, look for *`Tomcat started on port 8080 (http) with context path '/'`*;
     - Optional:
       - Open Docker Desktop and verify that the Compose stack `sonia_club` has containers `postgres_sponsors` and `sponsors_app`;
@@ -153,7 +153,7 @@ Use this when:
 #### Teardown instructions
 1. Use `Ctrl+c` to stop the containers;
     - Optional: stop the containers using the Docker Desktop interface;
-2. Run `docker compose down` to delete the containers;
+2. Delete the containers by running `docker compose down`
     - Optional: delete the containers using the Docker Desktop interface.
 
 
@@ -209,6 +209,7 @@ When updating or extending backend functionality, developers should respect thes
 
 ### Generalized sequence diagram
 ![Sequence diagram](./docs/diagrams/png/general%20dataflow.png)
+
 This diagram illustrates the typical flow of data through the backend, from the moment a user makes an HTTP request to the response being sent back. It complements the class/package overview by showing the runtime sequence of interactions.
 1. The Controller receives an HTTP request. This request often contains a DTO, an ID, or query parameters.
 2. The controller passes this data to the Service layer, which contains the core business logic.
