@@ -60,7 +60,7 @@ Use this when:
 
 #### Additional prerequisites
 - [**Apache Maven**](https://maven.apache.org/download.cgi) - for running the app
-  - Using the terminal to run `sudo apt install maven` can also be used;
+  - Make sure to follow the [installation instructions](https://maven.apache.org/install.html);
   - Verify the installation by running `mvn -v`;
 
 
@@ -79,6 +79,16 @@ docker run --name <postgres_container_name> \
   -p 5432:5432 \
   -d postgres
 ```
+  - The values should match the ones in the [application dev properties](sponsors/sonia/src/main/resources/application-dev.properties), so you may used these ones:
+```
+docker run --name <postgres_container_name> \
+  -e POSTGRES_DB=my_database \
+  -e POSTGRES_USER=relevant_username \
+  -e POSTGRES_PASSWORD=averysecurepassword \
+  -p 5432:5432 \
+  -d postgres
+```
+  - As mentioned by the file, these values should only be used for development purposes; 
   - Optional checks: 
     - Open Docker Desktop and verify that a container with the name you specified is running;
     - run `docker ps` and verify that a PostgreSQL container is up on port 5432;
@@ -124,7 +134,8 @@ Use this when:
   ```
   - `host` should match the service name in docker-compose.yml (postgres);
   - `port` is usually 5432;
-  - `db_name` should match the value assigned to POSTGRES_DB.
+  - `db_name` should match the value assigned to POSTGRES_DB;
+  - Note: Do not include spaces around = in the .env file (e.g., use KEY=value, not KEY = value), otherwise, docker-compose.yml may fail to read the variables correctly, causing the PostgreSQL container to not initialize properly and preventing the Spring Boot application from connecting to the database, resulting in a startup failure;
 4. Open a terminal within your IDE (Ctrl+` for Visual studio code);
     - Ensure that the terminal points at the root of the project;
 5. Run `docker compose up --build`;
